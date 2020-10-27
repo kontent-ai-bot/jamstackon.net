@@ -3,10 +3,12 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Jamstack.On.Dotnet</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Statiq.Web" Version="1.0.0-beta.11" />
+    <PackageReference Include="Kontent.Statiq" Version="1.0.0-*" />
+    <PackageReference Include="Statiq.Web" Version="1.0.0-*" />
   </ItemGroup>
 
 </Project>
