@@ -29,7 +29,8 @@ namespace Jamstack.On.Dotnet.Pipelines
             {
                 new MergeContent(new ReadFiles("Index.cshtml")),
                 new RenderRazor()
-                    .WithModel(Config.FromDocument((document) => document.AsKontent<LandingPage>()))
+                    .WithModel(Config.FromDocument((document, context) => 
+                        document.AsKontent<LandingPage>()))
             };
 
             OutputModules = new ModuleList {
