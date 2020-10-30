@@ -1,0 +1,28 @@
+﻿/// <reference path="_variables.scss" />
+
+article {
+
+    .summary {
+        width: 80%;
+        padding-bottom: 4em;
+    }
+
+    section {
+        display: flex;
+        margin: 0 0 48px;
+
+        &.two-columns {
+            div {
+                width: 50%;
+
+                &.content {
+                    padding: 0 1.5em;
+                }
+
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}

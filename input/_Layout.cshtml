@@ -6,8 +6,51 @@
 
 </head>
 <body class="dark">
-    <div class="layout">
-        @RenderBody()
-    </div>
+    <header>
+        <div class="logo">
+            <div>Jamstack on .Net</div>
+            <div>by Kontent</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Intro</a></li>
+                <li><a href="#">Step 1</a></li>
+                <li><a href="#">Step 2</a></li>
+                <li><label class="navigation__theme"><input type="checkbox"></label></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="layout">
+            @RenderBody()
+        </div>
+    </main>
+    <footer>
+        <div class="footer-wrapper">
+            <div class="logo">
+                <div>Jamstack on .Net</div>
+                <div>by Kontent</div>
+            </div>
+            <div class="footer-column-group">
+                <div class="footer-column">
+                    <span>Resources</span>
+                    <ul>
+                        <li><a href="#">Resource 1</a></li>
+                        <li><a href="#">Resource 2</a></li>
+                        <li><a href="#">Resource 3</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <span>Resources</span>
+                    <ul>
+                        <li><a href="#">Resource 1</a></li>
+                        <li><a href="#">Resource 2</a></li>
+                        <li><a href="#">Resource 3</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

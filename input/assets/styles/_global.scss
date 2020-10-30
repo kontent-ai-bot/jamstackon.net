@@ -12,13 +12,88 @@ html, body {
     &.dark {
         background-color: $color-dark-base;
         color: $color-dark-primary;
+
+        footer {
+            background-color: $color-dark-base-secondary;
+            color: $color-dark-primary;
+        }
+    }
+
+    header {
+        max-width: 1350px;
+        padding: 0 24px;
+        text-align: left;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+
+        .logo {
+            padding: 1em;
+        }
+
+        nav {
+            ol, ul {
+                display: flex;
+                list-style: none;
+
+                li {
+                    padding: .5em;
+
+                    a {
+                        text-decoration: none;
+                        color: $color-kontent-orange;
+                    }
+                }
+            }
+        }
     }
 
     .layout {
         max-width: 1350px;
         padding: 0 24px;
         text-align: left;
-        margin: 0 auto;        
+        margin: 0 auto;
+    }
+
+    footer {
+        background: $color-base-secondary;
+        color: $color-primary;
+
+        .footer-wrapper {
+            max-width: 1350px;
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+            margin: 0 auto;
+            padding: 2em;
+
+            .footer-column-group {
+                display: flex;
+
+                .footer-column {
+                    padding: .5em 1em;
+
+                    ul, ol {
+                        list-style: none;
+
+                        li {
+                            padding: 0.5em 0;
+
+                            a {
+                                text-decoration: none;
+                                color: $color-kontent-orange;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
+h1, h2, h3, h4 {
+    &.append-dot:after {
+        content: '.';
+        color: $color-kontent-orange;
+    }
+}
