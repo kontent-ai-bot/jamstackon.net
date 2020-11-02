@@ -19,10 +19,7 @@ namespace Jamstack.On.Dotnet.Pipelines
             {
                 // Load home page
                 new Kontent<LandingPage>(client)
-                    .WithQuery(new EqualsFilter("system.codename", "home_page")), 
-                // Set the output path for each article
-                new SetDestination(Config.FromDocument((doc, ctx)
-                  => new NormalizedPath($"index.html"))),
+                    .WithQuery(new EqualsFilter("system.codename", "home_page"))
             };
 
             ProcessModules = new ModuleList
@@ -30,7 +27,9 @@ namespace Jamstack.On.Dotnet.Pipelines
                 new MergeContent(new ReadFiles("_Index.cshtml")),
                 new RenderRazor()
                     .WithModel(Config.FromDocument((document, context) => 
-                        document.AsKontent<LandingPage>()))
+                        document.AsKontent<LandingPage>())),
+                new SetDestination(Config.FromDocument((doc, ctx)
+                  => new NormalizedPath($"index.html")))
             };
 
             OutputModules = new ModuleList {
