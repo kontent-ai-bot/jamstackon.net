@@ -5,9 +5,7 @@ using Kontent.Statiq;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Jamstack.On.Dotnet.Pipelines
 {
@@ -24,9 +22,9 @@ namespace Jamstack.On.Dotnet.Pipelines
 
             ProcessModules = new ModuleList
             {
-                new MergeContent(new ReadFiles("_Index.cshtml")),
+                new MergeContent(new ReadFiles("Index.cshtml")),
                 new RenderRazor()
-                    .WithModel(Config.FromDocument((document, context) => 
+                    .WithModel(Config.FromDocument((document, context) =>
                         document.AsKontent<LandingPage>())),
                 new SetDestination(Config.FromDocument((doc, ctx)
                   => new NormalizedPath($"index.html")))

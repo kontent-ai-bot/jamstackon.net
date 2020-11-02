@@ -10,16 +10,12 @@ using Kentico.Kontent.Delivery.Abstractions;
 
 namespace Jamstack.On.Dotnet.Models
 {
-    public partial class LandingPage
+    public partial class ColumnsComponent
     {
-        public const string Codename = "landing_page";
-        public const string HeadlineCodename = "headline";
-        public const string MainTextCodename = "main_text";
-        public const string SummaryCodename = "summary";
+        public const string Codename = "columns_component";
+        public const string ColumnsCodename = "columns";
 
-        public string Headline { get; set; }
-        public IRichTextContent MainText { get; set; }
-        public IRichTextContent Summary { get; set; }
+        public IRichTextContent Columns { get; set; }
         public IContentItemSystemAttributes System { get; set; }
     }
 }

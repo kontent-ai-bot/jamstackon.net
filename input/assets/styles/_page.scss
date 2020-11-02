@@ -24,8 +24,16 @@ article {
                     }
                 }
 
-                img {
-                    max-width: 100%;
+                &.image {
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    justify-content: center;
+
+
+                    img {
+                        max-width: 100%;
+                    }
                 }
             }
         }

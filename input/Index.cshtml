@@ -1,0 +1,9 @@
+@model Jamstack.On.Dotnet.Models.LandingPage
+
+    <article>
+        <h1 class="append-dot">@Model.Headline</h1>
+        <div class="summary">
+            @Html.DisplayFor(vm => vm.Summary)
+        </div>
+        @Html.DisplayFor(vm => vm.MainText)
+    </article>

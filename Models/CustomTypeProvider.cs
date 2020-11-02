@@ -9,7 +9,12 @@ namespace Jamstack.On.Dotnet.Models
     {
         private static readonly Dictionary<Type, string> _codenames = new Dictionary<Type, string>
         {
-            {typeof(LandingPage), "landing_page"}
+            {typeof(ColumnsComponent), "columns_component"},
+            {typeof(ImageAsset), "image_asset"},
+            {typeof(LandingPage), "landing_page"},
+            {typeof(Page), "page"},
+            {typeof(Root), "root"},
+            {typeof(Text), "text"}
         };
 
         public Type GetType(string contentType)

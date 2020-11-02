@@ -1,0 +1,5 @@
+﻿@model ImageAsset
+
+<div class="image">
+    <img src="@Model.Image.FirstOrDefault()?.Url" srcset="@Model.Image.FirstOrDefault()?.Url" alt="Model.Image.FirstOrDefault()?.Description" loading="lazy">
+</div>
