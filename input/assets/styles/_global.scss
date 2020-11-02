@@ -35,6 +35,7 @@ html, body {
             ol, ul {
                 display: flex;
                 list-style: none;
+                align-items: center;
 
                 li {
                     padding: .5em;
@@ -95,5 +96,66 @@ h1, h2, h3, h4 {
     &.append-dot:after {
         content: '.';
         color: $color-kontent-orange;
+    }
+}
+
+
+h1 {
+    font-size: 32px;
+    padding: 0 0 16px;
+
+    @media screen and (min-width: 480px) {
+        font-size: 48px;
+        padding: 0 0 18px;
+    }
+
+    @media screen and (min-width: 740px) {
+        font-size: 56px;
+        padding: 0 0 24px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: 72px;
+        padding: 0 0 36px;
+    }
+}
+
+h2 {
+    font-size: 24px;
+    padding: 0 0 12px;
+
+    @media screen and (min-width: 480px) {
+        font-size: 32px;
+        padding: 0 0 14px;
+    }
+
+    @media screen and (min-width: 740px) {
+        font-size: 36px;
+        padding: 0 0 16px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: 56px;
+        padding: 0 0 24px;
+    }
+}
+
+h3 {
+    font-size: 20px;
+    padding: 0 0 16px;
+
+    @media screen and (min-width: 480px) {
+        font-size: 24px;
+        padding: 0 0 20px;
+    }
+
+    @media screen and (min-width: 740px) {
+        font-size: 28px;
+        padding: 0 0 24px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: 32px;
+        padding: 0 0 32px;
     }
 }
