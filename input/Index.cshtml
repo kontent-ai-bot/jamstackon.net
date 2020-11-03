@@ -1,9 +1,12 @@
 @model Jamstack.On.Dotnet.Models.LandingPage
 
-    <article>
-        <h1 class="append-dot">@Model.Headline</h1>
-        <div class="summary">
-            @Html.DisplayFor(vm => vm.Summary)
+<article>
+    <h1>@Html.Raw(Model.Headline.Replace(".", "<span class='orange'>.</span>"))</h1>
+    <div class="summary">
+        @Html.DisplayFor(vm => vm.Summary)
+        <div class="cta-container">
+            @Html.DisplayFor(vm => vm.Cta)
         </div>
-        @Html.DisplayFor(vm => vm.MainText)
-    </article>
+    </div>
+    @Html.DisplayFor(vm => vm.MainText)
+</article>

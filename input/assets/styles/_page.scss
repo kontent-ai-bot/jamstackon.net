@@ -4,13 +4,24 @@ article {
 
     .summary {
         width: 80%;
-        padding-bottom: 4em;
-        line-height: 1.2;
+        padding-bottom: 3em;
+        font-size: large;
+
+        .cta-container {
+            display: flex;
+            margin-top: 2em;
+
+            .cta {
+
+            }
+        }
     }
+
 
     section {
         display: flex;
         margin: 0 0 48px;
+        min-height: 300px;
 
         &.two-columns {
             div {
