@@ -1,6 +1,5 @@
 ﻿@model ColumnsComponent
 
-<section class="two-columns">
-
+<section class="@(Model.Columns.Count() == 2 ? "two-columns" : null)">
     @Html.DisplayFor(vm => vm.Columns)
 </section>

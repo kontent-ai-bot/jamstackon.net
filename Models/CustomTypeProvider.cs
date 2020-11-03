@@ -15,6 +15,7 @@ namespace Jamstack.On.Dotnet.Models
             {typeof(LandingPage), "landing_page"},
             {typeof(Page), "page"},
             {typeof(Root), "root"},
+            {typeof(RowsComponent), "rows_component"},
             {typeof(Text), "text"}
         };
 

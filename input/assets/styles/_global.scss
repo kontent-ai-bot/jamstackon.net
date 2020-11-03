@@ -97,8 +97,8 @@ h1, h2, h3, h4 {
         content: '.';
         color: $color-kontent-orange;
     }
+    font-weight: bold;
 }
-
 
 h1 {
     font-size: 32px;
@@ -177,4 +177,45 @@ h3 {
 
 .orange {
     color: $color-kontent-orange;
+}
+
+.orange-lists {
+    // https://www.w3schools.com/howto/howto_css_bullet_color.asp
+    ul {
+        margin: .5em 0 .5em 1em;
+
+        li {
+            line-height: 1.5;
+
+            &::before {
+                content: "\25AA";
+                color: $color-kontent-orange;
+                font-weight: bold;
+                display: inline-block;
+                width: 1em;
+                margin-left: -1em
+            }
+        }
+    }
+    // https://www.w3.org/Style/Examples/007/color-bullets.en.html
+    ol {
+        margin: .5em 0 .5em 1.5em;
+
+        li {
+            counter-increment: li;
+            line-height: 1.5;
+
+            &::before {
+                content: counter(li) ".";
+                color: $color-kontent-orange;
+                display: inline-block;
+                width: 1.5em;
+                margin-left: -1.5em;
+            }
+        }
+    }
+}
+
+a {
+    color:$color-kontent-orange;
 }
