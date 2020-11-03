@@ -57,15 +57,17 @@ namespace Jamstack.On.Dotnet.Pipelines
     {
         public RootPipeline(IDeliveryClient client)
         {
-            InputModules = new ModuleList()
-            {
+            InputModules = new ModuleList {
                 new Kontent<Root>(client)
                     .WithQuery(
                         new EqualsFilter("system.codename", "root"),
                         new LimitParameter(1),
                         new DepthParameter(3)
 
-                    ),
+                    )
+            };
+
+            ProcessModules = new ModuleList {
                 new ReplaceDocuments(
                     new ExecuteConfig(
                         Config.FromDocument((doc, context) => {
@@ -89,7 +91,6 @@ namespace Jamstack.On.Dotnet.Pipelines
                                         break;
                                 }
                             });
-
                             return result;
                         })
                     )
@@ -98,17 +99,9 @@ namespace Jamstack.On.Dotnet.Pipelines
                 new MergeContent(new ReadFiles("LandigPage.cshtml")),
                 new RenderRazor()
                     .WithModel(Config.FromDocument((document, context) =>
-                        document.AsKontent<LandingPage>())),
-                new SetDestination(Config.FromDocument((doc, ctx) =>
-                  new NormalizedPath($"{doc.AsKontent<LandingPage>().System.Codename}.html")))
-            };
-
-            ProcessModules = new ModuleList
-            {
-                new MergeContent(new ReadFiles("LandigPage.cshtml")),
-                new RenderRazor()
-                    .WithModel(Config.FromDocument((document, context) =>
-                        document.AsKontent<LandingPage>())),
+                    {
+                        return document.AsKontent<LandingPage>();
+                    })),
                 new SetDestination(Config.FromDocument((doc, ctx) =>
                   new NormalizedPath($"{doc.AsKontent<LandingPage>().System.Codename}.html")))
             };
