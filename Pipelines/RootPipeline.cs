@@ -63,11 +63,7 @@ namespace Jamstack.On.Dotnet.Pipelines
                         new EqualsFilter("system.codename", "root"),
                         new LimitParameter(1),
                         new DepthParameter(3)
-
-                    )
-            };
-
-            ProcessModules = new ModuleList {
+                    ),
                 new ReplaceDocuments(
                     new ExecuteConfig(
                         Config.FromDocument((doc, context) => {
@@ -78,10 +74,10 @@ namespace Jamstack.On.Dotnet.Pipelines
                                 switch (subpage)
                                 {
                                     case Page page:
-                                        switch(page.Content.FirstOrDefault())
+                                        switch (page.Content.FirstOrDefault())
                                         {
                                             case LandingPage landingPage:
-                                                result = context.CreateDocument(CreateKontentDocument(context, landingPage));
+                                               result = context.CreateDocument(CreateKontentDocument(context, landingPage));
                                                 return;
                                             default:
                                                 break;
@@ -94,12 +90,15 @@ namespace Jamstack.On.Dotnet.Pipelines
                             return result;
                         })
                     )
-                ),
+                )
+            };
 
-                new MergeContent(new ReadFiles("LandigPage.cshtml")),
+            ProcessModules = new ModuleList {
+                new MergeContent(new ReadFiles("LandingPage.cshtml")),
                 new RenderRazor()
                     .WithModel(Config.FromDocument((document, context) =>
                     {
+
                         return document.AsKontent<LandingPage>();
                     })),
                 new SetDestination(Config.FromDocument((doc, ctx) =>
