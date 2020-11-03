@@ -3,6 +3,7 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Delivery.Urls.QueryParameters.Filters;
 using Kontent.Statiq;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
@@ -77,7 +78,7 @@ namespace Jamstack.On.Dotnet.Pipelines
                                         switch (page.Content.FirstOrDefault())
                                         {
                                             case LandingPage landingPage:
-                                               result = context.CreateDocument(CreateKontentDocument(context, landingPage));
+                                               result = context.CreateDocument(CreateKontentDocument<LandingPage>(context, landingPage));
                                                 return;
                                             default:
                                                 break;
@@ -102,7 +103,7 @@ namespace Jamstack.On.Dotnet.Pipelines
                         return document.AsKontent<LandingPage>();
                     })),
                 new SetDestination(Config.FromDocument((doc, ctx) =>
-                  new NormalizedPath($"{doc.AsKontent<LandingPage>().System.Codename}.html")))
+                  new NormalizedPath("index.html")))
             };
 
             OutputModules = new ModuleList {
@@ -111,9 +112,9 @@ namespace Jamstack.On.Dotnet.Pipelines
         }
 
 
-        private IDocument CreateKontentDocument(IExecutionContext context, LandingPage item)
+        private IDocument CreateKontentDocument<TContentModel>(IExecutionContext context, object item)
         {
-            var props = typeof(LandingPage).GetProperties(BindingFlags.Instance | BindingFlags.FlattenHierarchy |
+            var props = typeof(TContentModel).GetProperties(BindingFlags.Instance | BindingFlags.FlattenHierarchy |
                                                             BindingFlags.GetProperty | BindingFlags.Public);
             var metadata = new List<KeyValuePair<string, object>>
             {
