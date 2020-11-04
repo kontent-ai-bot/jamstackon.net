@@ -1,5 +1,13 @@
 ﻿@model Cta
 
-<div class="cta button">
+@{
+    var role = Model.Role.FirstOrDefault()?.Codename == "primary"
+        ? "primary"
+        : @Model.Role.FirstOrDefault()?.Codename == "secondary"
+            ? "secondary"
+            : null;
+}
+
+<div class="cta button @role">
     <a href="@Model.Url">@Model.Label</a>
 </div>

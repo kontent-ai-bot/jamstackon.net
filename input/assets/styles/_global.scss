@@ -97,6 +97,7 @@ h1, h2, h3, h4 {
         content: '.';
         color: $color-kontent-orange;
     }
+
     font-weight: bold;
 }
 
@@ -161,8 +162,13 @@ h3 {
 }
 
 .button {
+
+    &.cta {
+        margin: 2em 1em;
+    }
+
     a {
-        background-color: $color-kontent-orange;
+        background-color: $color-kontent-black-50;
         border: none;
         color: $color-kontent-white;
         padding: 15px 32px;
@@ -172,6 +178,18 @@ h3 {
         font-size: 16px;
         text-transform: uppercase;
         font-weight: bold;
+    }
+
+    &.primary {
+        a {
+            background-color: $color-kontent-orange;
+        }
+    }
+
+    &.secondary {
+        a {
+            background-color: $color-kontent-red;
+        }
     }
 }
 
@@ -217,5 +235,9 @@ h3 {
 }
 
 a {
-    color:$color-kontent-orange;
+    color: $color-kontent-orange;
+}
+
+strong {
+    font-weight: bold;
 }
