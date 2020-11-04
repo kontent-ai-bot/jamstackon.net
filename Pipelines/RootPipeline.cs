@@ -3,60 +3,20 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Delivery.Urls.QueryParameters.Filters;
 using Kontent.Statiq;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-/*
-Subbmit here: https://github.com/alanta/Kontent.Statiq/issues/new?assignees=&labels=&template=feature_request.md&title=
- 
- **Is your feature request related to a problem? Please describe.**
-If you want to load Linked Items of the particular item, it is required to transform them to `IDocument` to be able to pass them through the pipeline.
-
-i.e. You have a "Root" item that is the root of your website, this contains the Linked Items element (`Subpages`) model menu structure. Every item (`Page` type) then contains another `Subpages` element to allow having a multilevel navigation menu. Plus the `Page` model contains "Content" Linked items element containing typically one item holding the channel-agnostic content.
-
-> **Basicall [Webspotlight](https://docs.kontent.ai/tutorials/set-up-kontent/set-up-your-project/web-spotlight) setup.**
-
-Example model structure:
-
-```csharp   
-public partial class Root
-{
-        public IEnumerable<object> Subpages { get; set; } // Strongly types items of type i.e. Page
-}
-
-public partial class Page
-{
-        public IEnumerable<object> Subpages { get; set; } // Strongly types items of type i.e. Page
-        public IEnumerable<object> Content { get; set; } // Contains only one "Content" item
-}
-```
-
-Then in your pipeline, you could use: 
-
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
-
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
-
- */
 
 namespace Jamstack.On.Dotnet.Pipelines
 {
     public class RootPipeline : Pipeline
     {
-        public RootPipeline(IDeliveryClient client)
+        public RootPipeline(IDeliveryClient client, ITypeProvider typeProvider)
         {
             InputModules = new ModuleList {
                 new Kontent<Root>(client)
@@ -67,29 +27,19 @@ namespace Jamstack.On.Dotnet.Pipelines
                     ),
                 new ReplaceDocuments(
                     new ExecuteConfig(
-                        Config.FromDocument((doc, context) => {
-                            IDocument result = null;
-
-                            doc.AsKontent<Root>().Subpages.ToList().ForEach(subpage =>
+                        Config.FromDocument((doc, context) => 
+                            doc.AsKontent<Root>().Subpages.ToList().Select(subpage =>
                             {
-                                switch (subpage)
+                                var pageContent = (subpage as Page)?.Content.FirstOrDefault();
+                                if(pageContent == null)
                                 {
-                                    case Page page:
-                                        switch (page.Content.FirstOrDefault())
-                                        {
-                                            case LandingPage landingPage:
-                                               result = context.CreateDocument(CreateKontentDocument<LandingPage>(context, landingPage));
-                                                return;
-                                            default:
-                                                break;
-                                        }
-                                        break;
-                                    default:
-                                        break;
+                                        throw new InvalidDataException("Root page (codename: root, type: root) does not contain any pages, or any page does not contain exactly content block!");
                                 }
-                            });
-                            return result;
-                        })
+
+                                return context.CreateDocument(
+                                    CreateKontentDocument(context, pageContent));
+                            })
+                        )
                     )
                 )
             };
@@ -99,8 +49,22 @@ namespace Jamstack.On.Dotnet.Pipelines
                 new RenderRazor()
                     .WithModel(Config.FromDocument((document, context) =>
                     {
+                        var typeCodename = document
+                            .FilterMetadata(KontentKeys.System.Type)
+                            .Values
+                            ?.FirstOrDefault()
+                            ?.ToString();
+                        Type type = typeProvider.GetType(typeCodename);
 
-                        return document.AsKontent<LandingPage>();
+                        var landingPageType = typeof(LandingPage);
+                        if(landingPageType == type)
+                        {
+                                return document.AsKontent<LandingPage>();
+                        }
+                        else
+                        {
+                                throw new InvalidDataException("Unsuported content type of the Page's Content element");
+                        }
                     })),
                 new SetDestination(Config.FromDocument((doc, ctx) =>
                   new NormalizedPath("index.html")))
@@ -112,9 +76,9 @@ namespace Jamstack.On.Dotnet.Pipelines
         }
 
 
-        private IDocument CreateKontentDocument<TContentModel>(IExecutionContext context, object item)
+        private IDocument CreateKontentDocument(IExecutionContext context, object item)
         {
-            var props = typeof(TContentModel).GetProperties(BindingFlags.Instance | BindingFlags.FlattenHierarchy |
+            var props = item.GetType().GetProperties(BindingFlags.Instance | BindingFlags.FlattenHierarchy |
                                                             BindingFlags.GetProperty | BindingFlags.Public);
             var metadata = new List<KeyValuePair<string, object>>
             {
