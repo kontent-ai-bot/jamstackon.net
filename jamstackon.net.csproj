@@ -4,10 +4,12 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Jamstack.On.Dotnet</RootNamespace>
+    <UserSecretsId>dc331c62-f8c7-4934-90a0-9954b85b29a8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Kontent.Statiq" Version="1.0.0-beta0007" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.0" />
     <PackageReference Include="Statiq.Web" Version="1.0.0-beta.11" />
   </ItemGroup>
 

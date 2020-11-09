@@ -241,3 +241,12 @@ a {
 strong {
     font-weight: bold;
 }
+
+code {
+    text-decoration: none;
+    padding: 0.2em 0.4em;
+    font-size: 85%;
+    background-color: $color-kontent-black-50;
+    font-family: monospace;
+    color: $color-kontent-white;
+}
