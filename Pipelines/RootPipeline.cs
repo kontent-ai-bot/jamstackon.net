@@ -3,6 +3,7 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Delivery.Urls.QueryParameters.Filters;
 using Kontent.Statiq;
+using Spectre.Cli.Exceptions;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
@@ -13,9 +14,12 @@ namespace Jamstack.On.Dotnet.Pipelines
 {
     public class RootPipeline : Pipeline
     {
+        private const string URL_PATH_KEY = "Jamstack.On.Dotnet.Pipelines.RootPipeline.UrlPath";
+
         public RootPipeline(IDeliveryClient client, ITypeProvider typeProvider)
         {
-            InputModules = new ModuleList {
+            InputModules = new ModuleList
+            {
                 new Kontent<Root>(client)
                     .WithQuery(
                         new EqualsFilter("system.codename", "root"),
@@ -23,51 +27,80 @@ namespace Jamstack.On.Dotnet.Pipelines
                         new DepthParameter(3)
                     ),
                 new ReplaceDocuments(
-                    KontentConfig.GetChildren<Root>( page =>
-                        page.Subpages.OfType<Page>().SelectMany(item => item.Content)
+                    KontentConfig.GetChildren<Root>(root =>
+                        root.Subpages.OfType<Page>()
                         )
                     ),
+
+                // option
+                new ForEachDocument(
+                    new SetMetadata(URL_PATH_KEY, Config.FromDocument((doc, ctx) =>
+                    {
+                        return doc.AsKontent<Page>().Url;
+                    })
+                    ),
+                    new MergeDocuments(
+                        KontentConfig.GetChildren<Page>(page =>
+                        {
+                            return page.Content;
+                        })
+                    )
+                )
             };
 
             ProcessModules = new ModuleList {
-                new MergeContent(
-                    new ReadFiles(
-                        Config.FromDocument((document, context) => {
+                new ForEachDocument( // Why without this make from Input 2 documents - 4 documents?
+                    new MergeContent(
+                        new ReadFiles(
+                            Config.FromDocument((document, context) =>
+                            {
+                                var typeCodename = document
+                                    .FilterMetadata(KontentKeys.System.Type)
+                                    .Values
+                                    ?.FirstOrDefault()
+                                    ?.ToString();
+
+                                switch (typeCodename)
+                                {
+                                    case LandingPage.Codename:
+                                        return "LandingPage.cshtml";
+                                    default:
+                                        throw new NotImplementedException($"Template not implemented for page content type {typeCodename}");
+                                }
+                            })
+                        )
+                    ),
+                    new RenderRazor()
+                        .WithModel(Config.FromDocument((document, context) =>
+                        {
                             var typeCodename = document
                                 .FilterMetadata(KontentKeys.System.Type)
                                 .Values
                                 ?.FirstOrDefault()
                                 ?.ToString();
 
-                            switch(typeCodename)
+                            switch (typeCodename)
                             {
                                 case LandingPage.Codename:
-                                    return "LandingPage.cshtml";
+                                    return document.AsKontent<LandingPage>();
                                 default:
                                     throw new NotImplementedException($"Template not implemented for page content type {typeCodename}");
                             }
-                        })
-                    )
-                ),
-                new RenderRazor()
-                    .WithModel(Config.FromDocument((document, context) =>
-                    {
-                        var typeCodename = document
-                            .FilterMetadata(KontentKeys.System.Type)
-                            .Values
-                            ?.FirstOrDefault()
-                            ?.ToString();
-
-                        switch (typeCodename)
+                        })),
+                    new SetDestination(Config.FromDocument((doc, ctx) => {
+                        var url = doc.FilterMetadata(URL_PATH_KEY).FirstOrDefault().Value as string;
+                        if(!String.IsNullOrEmpty(url))
                         {
-                            case LandingPage.Codename:
-                                return document.AsKontent<LandingPage>();
-                            default:
-                                throw new NotImplementedException($"Template not implemented for page content type {typeCodename}");
+                            return new NormalizedPath($"{url}.html");
+                        } else if(url == "" || url == "/")
+                        {
+                            return new NormalizedPath("index.html");
                         }
-                    })),
-                new SetDestination(Config.FromDocument((doc, ctx) =>
-                  new NormalizedPath("index.html")))
+
+                        throw new ApplicationException($"Problem with Url of the page document");
+
+                    }))
+                )
             };
 
             OutputModules = new ModuleList {
