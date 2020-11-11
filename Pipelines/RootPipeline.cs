@@ -27,18 +27,21 @@ namespace Jamstack.On.Dotnet.Pipelines
                         new DepthParameter(3)
                     ),
                 new ReplaceDocuments(
-                    KontentConfig.GetChildren<Root>(root =>
-                        root.Subpages.OfType<Page>()
-                        )
-                    ),
+                    KontentConfig.GetChildren<Root>(root => 
+                    {          
+                        // For multiple levels of menu it is neccesary to flatten the Page structure and prepare metadata from the parent information
+                        return root.Subpages.OfType<Page>();
+                    })
+                ),
 
                 // option
                 new ForEachDocument(
+                    // Hack to get information from parent - it would be great to have info about the prarent (somehow)
+                    // Also i
                     new SetMetadata(URL_PATH_KEY, Config.FromDocument((doc, ctx) =>
-                    {
+                    {                        
                         return doc.AsKontent<Page>().Url;
-                    })
-                    ),
+                    })),
                     new MergeDocuments(
                         KontentConfig.GetChildren<Page>(page =>
                         {
@@ -49,7 +52,7 @@ namespace Jamstack.On.Dotnet.Pipelines
             };
 
             ProcessModules = new ModuleList {
-                new ForEachDocument( // Why without this make from Input 2 documents - 4 documents?
+                new ForEachDocument(
                     new MergeContent(
                         new ReadFiles(
                             Config.FromDocument((document, context) =>
