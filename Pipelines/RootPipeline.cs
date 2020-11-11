@@ -37,7 +37,6 @@ namespace Jamstack.On.Dotnet.Pipelines
                 // option
                 new ForEachDocument(
                     // Hack to get information from parent - it would be great to have info about the prarent (somehow)
-                    // Also i
                     new SetMetadata(URL_PATH_KEY, Config.FromDocument((doc, ctx) =>
                     {                        
                         return doc.AsKontent<Page>().Url;
