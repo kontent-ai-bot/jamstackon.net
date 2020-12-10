@@ -3,22 +3,23 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Delivery.Urls.QueryParameters.Filters;
 using Kontent.Statiq;
+using Spectre.Cli.Exceptions;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace Jamstack.On.Dotnet.Pipelines
 {
     public class RootPipeline : Pipeline
     {
+        private const string URL_PATH_KEY = "Jamstack.On.Dotnet.Pipelines.RootPipeline.UrlPath";
+
         public RootPipeline(IDeliveryClient client, ITypeProvider typeProvider)
         {
-            InputModules = new ModuleList {
+            InputModules = new ModuleList
+            {
                 new Kontent<Root>(client)
                     .WithQuery(
                         new EqualsFilter("system.codename", "root"),
@@ -26,80 +27,87 @@ namespace Jamstack.On.Dotnet.Pipelines
                         new DepthParameter(3)
                     ),
                 new ReplaceDocuments(
-                    new ExecuteConfig(
-                        Config.FromDocument((doc, context) => 
-                            doc.AsKontent<Root>().Subpages.ToList().Select(subpage =>
-                            {
-                                var pageContent = (subpage as Page)?.Content.FirstOrDefault();
-                                if(pageContent == null)
-                                {
-                                        throw new InvalidDataException("Root page (codename: root, type: root) does not contain any pages, or any page does not contain exactly content block!");
-                                }
+                    KontentConfig.GetChildren<Root>(root =>
+                    {          
+                        // For multiple levels of menu it is neccesary to flatten the Page structure and prepare metadata from the parent information
+                        return root.Subpages.OfType<Page>();
+                    })
+                ),
 
-                                return context.CreateDocument(
-                                    CreateKontentDocument(context, pageContent));
-                            })
-                        )
+                // option
+                new ForEachDocument(
+                    // Hack to get information from parent - it would be great to have info about the prarent (somehow)
+                    new SetMetadata(URL_PATH_KEY, Config.FromDocument((doc, ctx) =>
+                    {
+                        return doc.AsKontent<Page>().Url;
+                    })),
+                    new MergeDocuments(
+                        KontentConfig.GetChildren<Page>(page =>
+                        {
+                            return page.Content;
+                        })
                     )
                 )
             };
 
             ProcessModules = new ModuleList {
-                new MergeContent(new ReadFiles("LandingPage.cshtml")),
-                new RenderRazor()
-                    .WithModel(Config.FromDocument((document, context) =>
-                    {
-                        var typeCodename = document
-                            .FilterMetadata(KontentKeys.System.Type)
-                            .Values
-                            ?.FirstOrDefault()
-                            ?.ToString();
-                        Type type = typeProvider.GetType(typeCodename);
+                new ForEachDocument(
+                    new MergeContent(
+                        new ReadFiles(
+                            Config.FromDocument((document, context) =>
+                            {
+                                var typeCodename = document
+                                    .FilterMetadata(KontentKeys.System.Type)
+                                    .Values
+                                    ?.FirstOrDefault()
+                                    ?.ToString();
 
-                        var landingPageType = typeof(LandingPage);
-                        if(landingPageType == type)
+                                switch (typeCodename)
+                                {
+                                    case LandingPage.Codename:
+                                        return "_partials/LandingPage.cshtml";
+                                    default:
+                                        throw new NotImplementedException($"Template not implemented for page content type {typeCodename}");
+                                }
+                            })
+                        )
+                    ),
+                    new RenderRazor()
+                        .WithModel(Config.FromDocument((document, context) =>
                         {
-                                return document.AsKontent<LandingPage>();
-                        }
-                        else
+                            var typeCodename = document
+                                .FilterMetadata(KontentKeys.System.Type)
+                                .Values
+                                ?.FirstOrDefault()
+                                ?.ToString();
+
+                            switch (typeCodename)
+                            {
+                                case LandingPage.Codename:
+                                    return document.AsKontent<LandingPage>();
+                                default:
+                                    throw new NotImplementedException($"Template not implemented for page content type {typeCodename}");
+                            }
+                        })),
+                    new SetDestination(Config.FromDocument((doc, ctx) => {
+                        var url = doc.FilterMetadata(URL_PATH_KEY).FirstOrDefault().Value as string;
+                        if(String.IsNullOrEmpty(url))
                         {
-                                throw new InvalidDataException("Unsuported content type of the Page's Content element");
+                            throw new ApplicationException($"Problem with Url of the page document - it is not set");
+                        } else if(url == "/")
+                        {
+                            return new NormalizedPath("index.html");
                         }
-                    })),
-                new SetDestination(Config.FromDocument((doc, ctx) =>
-                  new NormalizedPath("index.html")))
+
+                        return new NormalizedPath($"{url}.html");
+
+                    }))
+                )
             };
 
             OutputModules = new ModuleList {
                 new WriteFiles()
             };
-        }
-
-
-        private IDocument CreateKontentDocument(IExecutionContext context, object item)
-        {
-            var props = item.GetType().GetProperties(BindingFlags.Instance | BindingFlags.FlattenHierarchy |
-                                                            BindingFlags.GetProperty | BindingFlags.Public);
-            var metadata = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>(TypedContentExtensions.KontentItemKey, item),
-            };
-
-            if (props.FirstOrDefault(prop => typeof(IContentItemSystemAttributes).IsAssignableFrom(prop.PropertyType))
-                ?.GetValue(item) is IContentItemSystemAttributes systemProp)
-            {
-                metadata.AddRange(new[]
-                {
-                    new KeyValuePair<string, object>(KontentKeys.System.Name, systemProp.Name),
-                    new KeyValuePair<string, object>(KontentKeys.System.CodeName, systemProp.Codename),
-                    new KeyValuePair<string, object>(KontentKeys.System.Language, systemProp.Language),
-                    new KeyValuePair<string, object>(KontentKeys.System.Id, systemProp.Id),
-                    new KeyValuePair<string, object>(KontentKeys.System.Type, systemProp.Type),
-                    new KeyValuePair<string, object>(KontentKeys.System.LastModified, systemProp.LastModified)
-                });
-            }
-
-            return context.CreateDocument(metadata, null, "text/html");
         }
     }
 }
