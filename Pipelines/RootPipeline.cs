@@ -27,7 +27,7 @@ namespace Jamstack.On.Dotnet.Pipelines
                         new DepthParameter(3)
                     ),
                 new ReplaceDocuments(
-                    KontentConfig.GetChildren<Root>(root => 
+                    KontentConfig.GetChildren<Root>(root =>
                     {          
                         // For multiple levels of menu it is neccesary to flatten the Page structure and prepare metadata from the parent information
                         return root.Subpages.OfType<Page>();
@@ -38,7 +38,7 @@ namespace Jamstack.On.Dotnet.Pipelines
                 new ForEachDocument(
                     // Hack to get information from parent - it would be great to have info about the prarent (somehow)
                     new SetMetadata(URL_PATH_KEY, Config.FromDocument((doc, ctx) =>
-                    {                        
+                    {
                         return doc.AsKontent<Page>().Url;
                     })),
                     new MergeDocuments(
@@ -65,7 +65,7 @@ namespace Jamstack.On.Dotnet.Pipelines
                                 switch (typeCodename)
                                 {
                                     case LandingPage.Codename:
-                                        return "LandingPage.cshtml";
+                                        return "_partials/LandingPage.cshtml";
                                     default:
                                         throw new NotImplementedException($"Template not implemented for page content type {typeCodename}");
                                 }
@@ -91,15 +91,15 @@ namespace Jamstack.On.Dotnet.Pipelines
                         })),
                     new SetDestination(Config.FromDocument((doc, ctx) => {
                         var url = doc.FilterMetadata(URL_PATH_KEY).FirstOrDefault().Value as string;
-                        if(!String.IsNullOrEmpty(url))
+                        if(String.IsNullOrEmpty(url))
                         {
-                            return new NormalizedPath($"{url}.html");
-                        } else if(url == "" || url == "/")
+                            throw new ApplicationException($"Problem with Url of the page document - it is not set");
+                        } else if(url == "/")
                         {
                             return new NormalizedPath("index.html");
                         }
 
-                        throw new ApplicationException($"Problem with Url of the page document");
+                        return new NormalizedPath($"{url}.html");
 
                     }))
                 )
