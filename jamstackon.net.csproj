@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Jamstack.On.Dotnet</RootNamespace>
     <UserSecretsId>dc331c62-f8c7-4934-90a0-9954b85b29a8</UserSecretsId>
   </PropertyGroup>
