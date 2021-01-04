@@ -13,6 +13,10 @@ html, body {
         background-color: $color-dark-base;
         color: $color-dark-primary;
 
+        .secondary {
+            color: $color-dark-secondary;
+        }
+
         footer {
             background-color: $color-dark-base-secondary;
             color: $color-dark-primary;
@@ -21,7 +25,7 @@ html, body {
 
     header {
         max-width: 1350px;
-        padding: 0 24px;
+        padding-top: 3em;
         text-align: left;
         margin: 0 auto;
         display: flex;
@@ -29,6 +33,10 @@ html, body {
 
         .logo {
             padding: 1em;
+            .title {
+                font-size: larger;
+                font-weight: bold;
+            }
         }
 
         nav {
@@ -42,7 +50,8 @@ html, body {
 
                     a {
                         text-decoration: none;
-                        color: $color-kontent-orange;
+                        color: $color-kontent-black-50;
+                        font-size: small;
                     }
                 }
             }
@@ -143,21 +152,21 @@ h2 {
 
 h3 {
     font-size: 20px;
-    padding: 0 0 16px;
+    padding: 16px 0 16px;
 
     @media screen and (min-width: 480px) {
         font-size: 24px;
-        padding: 0 0 20px;
+        padding: 20px 0 20px;
     }
 
     @media screen and (min-width: 740px) {
         font-size: 28px;
-        padding: 0 0 24px;
+        padding: 24px 0 24px;
     }
 
     @media screen and (min-width: 1280px) {
         font-size: 32px;
-        padding: 0 0 32px;
+        padding: 32px 0 32px;
     }
 }
 
@@ -175,9 +184,9 @@ h3 {
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
+        border-radius: 2em;
         text-transform: uppercase;
-        font-weight: bold;
+        font-weight: bold
     }
 
     &.primary {

@@ -14,8 +14,10 @@ namespace Jamstack.On.Dotnet.Models
     {
         public const string Codename = "image_asset";
         public const string ImageCodename = "image";
+        public const string LabelCodename = "label";
 
         public IEnumerable<IAsset> Image { get; set; }
+        public string Label { get; set; }
         public IContentItemSystemAttributes System { get; set; }
     }
 }

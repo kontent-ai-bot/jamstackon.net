@@ -1,6 +1,8 @@
 ﻿/// <reference path="_variables.scss" />
 
 article {
+    padding-top: 5em;
+
     .summary {
         width: 80%;
         padding-bottom: 3em;
@@ -11,19 +13,43 @@ article {
             margin-top: 1.5em;
 
             .cta {
-
             }
         }
     }
 
-
     section {
+        padding-top: 8em;
+    }
+
+    .flex-row {
         display: flex;
-        margin: 0 0 48px;
+        flex-direction: row;
+        align-items: stretch;
+
+
+        & > .content {
+            width: 100%;
+
+            .title {
+                text-align: center;
+            }
+
+            table {
+                margin: auto;
+
+                tr, td {
+                    padding: 1em;
+                }
+            }
+        }
+    }
+
+    .flex {
+        display: flex;
         min-height: 300px;
 
         &.two-columns {
-            div {
+            & > div {
                 width: 50%;
 
                 &.content {
@@ -39,10 +65,15 @@ article {
                     align-items: center;
                     align-content: center;
                     justify-content: center;
+                    flex-direction: column;
 
 
                     img {
                         max-width: 100%;
+                    }
+
+                    .label {
+                        line-height: 2;
                     }
                 }
             }

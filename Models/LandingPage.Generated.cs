@@ -15,11 +15,13 @@ namespace Jamstack.On.Dotnet.Models
         public const string Codename = "landing_page";
         public const string CtaCodename = "cta";
         public const string HeadlineCodename = "headline";
+        public const string ImagesCodename = "images";
         public const string MainTextCodename = "main_text";
         public const string SummaryCodename = "summary";
 
         public IEnumerable<object> Cta { get; set; }
         public string Headline { get; set; }
+        public IRichTextContent Images { get; set; }
         public IRichTextContent MainText { get; set; }
         public IRichTextContent Summary { get; set; }
         public IContentItemSystemAttributes System { get; set; }

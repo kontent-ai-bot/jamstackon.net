@@ -37,6 +37,14 @@
             -webkit-transition: .4s;
             transition: .4s;
         }
+
+        &.round {
+            border-radius: 34px;
+
+            &:before {
+                border-radius: 50%
+            }
+        }
     }
 
     input:checked + .slider {

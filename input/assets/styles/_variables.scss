@@ -1,4 +1,4 @@
-﻿$typography-font-family: "GT Walsheim", sans-serif;
+﻿$typography-font-family: "GT-Walsheim", arial;
 
 // https://brand.kentico.com/d/RM4qopgyPvL2/guidelines#/visual/colors-1585555152
 
@@ -14,12 +14,12 @@ $color-kontent-black-20: #D3D2D2;
 $color-kontent-black-10: #E9E8E8;
 $color-kontent-white: #FFFFFF;
 
-$color-base: $color-kontent-white;
-$color-base-secondary: $color-kontent-black-10;
+$color-base: $color-kontent-black-50;
+$color-base-secondary: $color-kontent-black-100;
 $color-primary: $color-kontent-black-100;
 $color-secondary: $color-kontent-orange;
 
 $color-dark-base: $color-kontent-black-100;
 $color-dark-base-secondary: #393637;
 $color-dark-primary: $color-kontent-white;
-$color-dark-secondary: $color-kontent-orange;
+$color-dark-secondary: $color-kontent-black-50;
