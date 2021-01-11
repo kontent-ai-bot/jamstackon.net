@@ -1,27 +1,33 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Test title</title>
+    <title>TODO TITLE with SEO</title>
     <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/main.css")" />
 
 </head>
 <body class="dark">
     <header>
         <div class="logo">
-            <div class="title">Jamstack on .Net</div>
+            <div class="title">@ViewBag.HeaderTitle</div>
         </div>
         <nav>
             <ul>
-                <li><a href="#">Live editing</a></li>
-                <li><a href="#">Reuse content</a></li>
-                <li><a href="#">Fit every webpage</a></li>
-                <li><a href="#">Modern technoloties</a></li>
-                <li>
-                    <label class="switch">
-                        <input type="checkbox" checked="checked" onchange="this.checked ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')">
-                        <span class="slider round"></span>
-                    </label>
-                </li>
+                @{
+                    foreach (var link in (IEnumerable<Link>)ViewBag.Links)
+                    {
+                        <li><a href="@link.Url">@link.Label</a></li>
+                    }
+                }
+
+                @if (ViewBag.ShowDarkModeToggle)
+                {
+                    <li>
+                        <label class="switch">
+                            <input type="checkbox" checked="checked" onchange="this.checked ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')">
+                            <span class="slider round"></span>
+                        </label>
+                    </li>
+                }
             </ul>
         </nav>
     </header>

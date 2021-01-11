@@ -1,11 +1,7 @@
 ﻿@model Cta
 
 @{
-    var role = Model.Role.FirstOrDefault()?.Codename == "primary"
-        ? "primary"
-        : @Model.Role.FirstOrDefault()?.Codename == "secondary"
-            ? "secondary"
-            : null;
+    var role = Model.Role.FirstOrDefault()?.Codename;
 }
 
 <div class="cta button @role">
