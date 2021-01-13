@@ -22,6 +22,13 @@ article {
         padding-top: 8em;
     }
 
+    figure.logo.inline {
+        width: 15em;
+        a, img {
+            width: inherit;
+        }
+    }
+
     .flex-row {
         display: flex;
         flex-direction: row;
@@ -34,14 +41,6 @@ article {
             .title {
                 text-align: center;
             }
-
-            table {
-                margin: auto;
-
-                tr, td {
-                    padding: 1em;
-                }
-            }
         }
     }
 
@@ -51,6 +50,7 @@ article {
 
         & > div {
             flex-grow: 1;
+            flex-basis: 1em;
 
             &.content {
                 padding: 0 1.5em;
@@ -61,22 +61,23 @@ article {
                     letter-spacing: 0;
                 }
             }
+        }
 
-            &.image {
-                display: flex;
-                align-items: center;
-                align-content: center;
-                justify-content: center;
-                flex-direction: column;
+        & > figure {
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-basis: 1em;
 
+            img {
+                max-width: 100%;
+            }
 
-                img {
-                    max-width: 100%;
-                }
-
-                .label {
-                    line-height: 2;
-                }
+            figcaption {
+                line-height: 2;
             }
         }
     }

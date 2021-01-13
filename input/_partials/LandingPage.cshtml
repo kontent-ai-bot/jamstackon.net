@@ -7,7 +7,7 @@
 }
 
 <article>
-    <div class="flex two-columns">
+    <div class="flex">
         <div>
             <h1>@Html.Raw(Model.Headline.Replace("?", "<span class='orange'>?</span>"))</h1>
             <div class="summary secondary">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex two-columns">
+        <div class="flex">
             @Html.DisplayFor(vm => vm.Images)
         </div>
     </div>

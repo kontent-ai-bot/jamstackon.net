@@ -15,6 +15,7 @@ namespace Jamstack.On.Dotnet.Models
             {typeof(ImageAsset), "image_asset"},
             {typeof(LandingPage), "landing_page"},
             {typeof(Link), "link"},
+            {typeof(LogoAsset), "logo_asset"},
             {typeof(Page), "page"},
             {typeof(Root), "root"},
             {typeof(RowsComponent), "rows_component"},

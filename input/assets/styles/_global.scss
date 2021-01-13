@@ -36,6 +36,15 @@ html, body {
             }
         }
 
+        table {
+            tbody {
+
+                & > tr:first-child {
+                    border-color: $color-dark-secondary;
+                }
+            }
+        }
+
         footer {
             background-color: $color-dark-base-secondary;
             color: $color-dark-primary;
@@ -286,4 +295,28 @@ code {
     background-color: $color-kontent-black-50;
     font-family: monospace;
     color: $color-kontent-white;
+}
+
+table {
+    margin: auto;
+
+    tbody {
+
+        & > tr:first-child {
+            border-bottom: 1px $color-secondary solid;
+            line-height: 3em;
+        }
+
+        & > tr:nth-child(2) {
+            height: 5em;
+
+            td {
+                vertical-align: bottom;
+            }
+        }
+
+        tr, td {
+            padding: 1em;
+        }
+    }
 }
