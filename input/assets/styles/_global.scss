@@ -13,6 +13,18 @@ html, body {
         background-color: $color-dark-base;
         color: $color-dark-primary;
 
+        header {
+            nav {
+                ol, ul {
+                    li {
+                        a {
+                            color: $color-dark-primary;
+                        }
+                    }
+                }
+            }
+        }
+
         .secondary {
             color: $color-dark-secondary;
         }
@@ -32,7 +44,7 @@ html, body {
 
     header {
         max-width: 1350px;
-        padding-top: 3em;
+        padding-top: 5em;
         text-align: left;
         margin: 0 auto;
         display: flex;
@@ -42,7 +54,7 @@ html, body {
             padding: 1em;
 
             .title {
-                font-size: larger;
+                font-size: 2em;
                 font-weight: bold;
             }
         }
@@ -54,12 +66,13 @@ html, body {
                 align-items: center;
 
                 li {
-                    padding: .5em;
+                    padding: 1em;
 
                     a {
                         text-decoration: none;
-                        color: $color-kontent-black-50;
-                        font-size: small;
+                        opacity: .66;
+                        color: $color-primary;
+                        font-size: 1.2em;
                     }
                 }
             }

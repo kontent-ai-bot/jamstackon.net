@@ -1,8 +1,7 @@
 ﻿@model ImageAsset
 
+
 <div class="image">
-    <img src="@Model.Image.FirstOrDefault()?.Url" srcset="@Model.Image.FirstOrDefault()?.Url" alt="Model.Image.FirstOrDefault()?.Description" loading="lazy">
-    @*TODO: Solve the font propagation*@
-    @*<object class="testImage" type="image/svg+xml" data="@Model.Image.FirstOrDefault()?.Url"> </object>
-    <p class="label">@Model.Label</p>*@
+    <img src="@Model.Image.FirstOrDefault()?.Url" srcset="@Model.Image.FirstOrDefault()?.Url" alt="@Model.Image.FirstOrDefault()?.Description" loading="lazy">
+    <p class="label">@Model.Label</p>
 </div>

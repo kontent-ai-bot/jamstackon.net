@@ -3,7 +3,6 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Delivery.Urls.QueryParameters.Filters;
 using Kontent.Statiq;
-using Spectre.Cli.Exceptions;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
