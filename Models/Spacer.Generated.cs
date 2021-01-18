@@ -10,18 +10,12 @@ using Kentico.Kontent.Delivery.Abstractions;
 
 namespace Jamstack.On.Dotnet.Models
 {
-    public partial class Cta
+    public partial class Spacer
     {
-        public const string Codename = "cta";
+        public const string Codename = "spacer";
         public const string LabelCodename = "label";
-        public const string OptionsCodename = "options";
-        public const string RoleCodename = "role";
-        public const string UrlCodename = "url";
 
         public string Label { get; set; }
-        public IEnumerable<IMultipleChoiceOption> Options { get; set; }
-        public IEnumerable<IMultipleChoiceOption> Role { get; set; }
         public IContentItemSystemAttributes System { get; set; }
-        public string Url { get; set; }
     }
 }

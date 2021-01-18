@@ -1,0 +1,5 @@
+﻿@model CodeSnippet
+
+<div class="code-snippet">
+    <pre data-prompt=">" class="@(Model.CodeStructured.Language == "sh" ? "command-line" : "")"><code class="language-@Model.CodeStructured.Language">@Model.CodeStructured.Code</code></pre>
+</div>

@@ -3,7 +3,8 @@
 <head>
     <title>TODO TITLE with SEO</title>
     <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/main.css")" />
-
+    <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/prism.css")" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="dark">
     <header>
@@ -40,8 +41,7 @@
     <footer>
         <div class="footer-wrapper">
             <div class="logo">
-                <div>Jamstack on .Net</div>
-                <div>by Kontent</div>
+                <div>@Html.Raw("Jamstack on .NET".Replace(".", "<span class='orange'>.</span>"))</div>
             </div>
             <div class="footer-column-group">
                 <div class="footer-column">
@@ -63,5 +63,7 @@
             </div>
         </div>
     </footer>
+    <script src="@IExecutionContext.Current.GetLink("/assets/scripts/prism.js")"></script>
+
 </body>
 </html>

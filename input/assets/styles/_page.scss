@@ -24,6 +24,7 @@ article {
 
     figure.logo.inline {
         width: 15em;
+
         a, img {
             width: inherit;
         }
@@ -31,12 +32,11 @@ article {
 
     .flex-row {
         display: flex;
-        flex-direction: row;
-        align-items: stretch;
-
+        flex-direction: column;
 
         & > .content {
             width: 100%;
+
 
             .title {
                 text-align: center;
@@ -46,7 +46,17 @@ article {
 
     .flex {
         display: flex;
-        min-height: 300px;
+        flex-wrap: wrap;
+
+        & > div, figure {
+            /* Responsive */
+            min-width: 370px;
+
+            @media screen and (max-width: 400px) {
+                min-width: 200px;
+                width: 80%;
+            }
+        }
 
         & > div {
             flex-grow: 1;
@@ -54,12 +64,6 @@ article {
 
             &.content {
                 padding: 0 1.5em;
-                max-width: 40%;
-
-                p {
-                    line-height: 1.3;
-                    letter-spacing: 0;
-                }
             }
         }
 
@@ -71,14 +75,31 @@ article {
             flex-direction: column;
             flex-grow: 1;
             flex-basis: 1em;
+            order: 2;
+
+            &.logo {
+                img {
+                    width: 10em;
+                }
+            }
 
             img {
+                padding: .5em;
                 max-width: 100%;
             }
+
 
             figcaption {
                 line-height: 2;
             }
         }
+    }
+
+    .spacer {
+        margin: 2em;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }

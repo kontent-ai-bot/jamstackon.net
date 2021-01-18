@@ -36,6 +36,14 @@ html, body {
             }
         }
 
+        .code-snippet {
+            :not(pre) > code[class*="language-"],
+            pre[class*="language-"] {
+                background-color: $color-dark-base;
+                border-color: $color-base;
+            }
+        }
+
         table {
             tbody {
 
@@ -204,6 +212,9 @@ h3 {
 
     &.cta {
         margin: 2em 1em;
+        &.center {
+            text-align: center;
+        }
     }
 
     a {
@@ -243,58 +254,51 @@ h3 {
     color: $color-kontent-orange;
 }
 
-.orange-lists {
-    // https://www.w3schools.com/howto/howto_css_bullet_color.asp
-    ul {
-        margin: .5em 0 .5em 1em;
-
-        li {
-            line-height: 1.5;
-
-            &::before {
-                content: "\25AA";
-                color: $color-kontent-orange;
-                font-weight: bold;
-                display: inline-block;
-                width: 1em;
-                margin-left: -1em
-            }
-        }
-    }
-    // https://www.w3.org/Style/Examples/007/color-bullets.en.html
-    ol {
-        margin: .5em 0 .5em 1.5em;
-
-        li {
-            counter-increment: li;
-            line-height: 1.5;
-
-            &::before {
-                content: counter(li) ".";
-                color: $color-kontent-orange;
-                display: inline-block;
-                width: 1.5em;
-                margin-left: -1.5em;
-            }
-        }
-    }
-}
-
 a {
     color: $color-kontent-orange;
+}
+
+p {
+    line-height: 1.5;
+    letter-spacing: 0;
+    padding: .5em 0;
 }
 
 strong {
     font-weight: bold;
 }
 
-code {
-    text-decoration: none;
-    padding: 0.2em 0.4em;
-    font-size: 85%;
-    background-color: $color-kontent-black-50;
-    font-family: monospace;
-    color: $color-kontent-white;
+.code-snippet {
+
+    .command-line-prompt {
+        span::before {
+            color: $color-kontent-red;
+        }
+    }
+
+    :not(pre) > code[class*="language-"],
+    pre[class*="language-"] {
+        background-color: $color-kontent-black-50;
+        border: solid 1px $color-primary;
+
+        .token.function {
+            color: $color-kontent-red;
+        }
+
+        .token.keyword {
+            color: $color-kontent-blue;
+        }
+
+        .token.property,
+        .token.tag,
+        .token.boolean,
+        .token.number,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+            color: $color-kontent-green;
+        }
+    }
 }
 
 table {

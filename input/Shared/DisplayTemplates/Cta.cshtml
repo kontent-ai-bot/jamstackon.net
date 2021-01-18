@@ -2,8 +2,9 @@
 
 @{
     var role = Model.Role.FirstOrDefault()?.Codename;
+    var center = Model.Options.Any(option => option.Codename == "center");
 }
 
-<div class="cta button @role">
+<div class="cta button @role @(center ? "center" : "")">
     <a href="@Model.Url">@Model.Label</a>
 </div>

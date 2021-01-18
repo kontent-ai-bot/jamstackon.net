@@ -19,6 +19,7 @@ namespace Jamstack.On.Dotnet.Models
             {typeof(Page), "page"},
             {typeof(Root), "root"},
             {typeof(RowsComponent), "rows_component"},
+            {typeof(Spacer), "spacer"},
             {typeof(Text), "text"}
         };
 
