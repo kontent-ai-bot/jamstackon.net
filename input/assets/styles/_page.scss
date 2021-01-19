@@ -48,7 +48,7 @@ article {
         display: flex;
         flex-wrap: wrap;
 
-        & > div, figure {
+        & > div, & > figure {
             /* Responsive */
             min-width: 370px;
 
@@ -56,6 +56,10 @@ article {
                 min-width: 200px;
                 width: 80%;
             }
+        }
+
+        & > .flex > figure {
+            min-width: unset;
         }
 
         & > div {
@@ -75,9 +79,14 @@ article {
             flex-direction: column;
             flex-grow: 1;
             flex-basis: 1em;
-            order: 2;
+
+            @media screen and (max-width: 780px) {
+                order: 2; /*needs to be add only for responsive mode*/
+            }
 
             &.logo {
+                min-width: unset;
+
                 img {
                     width: 10em;
                 }
