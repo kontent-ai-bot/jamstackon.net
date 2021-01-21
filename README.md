@@ -2,6 +2,7 @@
 ![Release](https://github.com/Kentico/jamstackon.net/workflows/Publish%20site/badge.svg)
 [![Live Demo](https://img.shields.io/badge/Live-DEMO-brightgreen.svg?logo=github&logoColor=white)](https://jamstackon.net)
 
+[![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-cloud)
 
 # Jamstack on .Net
 
@@ -9,6 +10,7 @@
 
 Microsite utilizing [Statiq](https://statiq.dev/) and [Kentico Kontent](https://kontent.ai) via [Kontent.Statiq](https://github.com/alanta/Kontent.Statiq) module to evangelize the Jamstack world for .NET developers.
 
+[![Screenshot](./screenshot.png)](https://jamstackon.net)
 
 ## Get started
 
