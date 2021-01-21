@@ -13,13 +13,37 @@ namespace Jamstack.On.Dotnet.Models
     public partial class Root
     {
         public const string Codename = "root";
+        public const string BackgroundColorCodename = "background_color";
         public const string ContentCodename = "content";
+        public const string DescriptionCodename = "description";
+        public const string DisplayCodename = "display";
+        public const string IconCodename = "icon";
+        public const string ImageCodename = "image";
+        public const string KeywordsCodename = "keywords";
+        public const string ScopeCodename = "scope";
+        public const string ShortNameCodename = "short_name";
+        public const string ShortcutsCodename = "shortcuts";
+        public const string StartUrlCodename = "start_url";
         public const string SubpagesCodename = "subpages";
+        public const string ThemeColorCodename = "theme_color";
         public const string TitleCodename = "title";
+        public const string UrlCodename = "url";
 
+        public string BackgroundColor { get; set; }
         public IEnumerable<object> Content { get; set; }
+        public string Description { get; set; }
+        public string Display { get; set; }
+        public IEnumerable<IAsset> Icon { get; set; }
+        public IEnumerable<IAsset> Image { get; set; }
+        public string Keywords { get; set; }
+        public string Scope { get; set; }
+        public IEnumerable<object> Shortcuts { get; set; }
+        public string ShortName { get; set; }
+        public string StartUrl { get; set; }
         public IEnumerable<object> Subpages { get; set; }
         public IContentItemSystemAttributes System { get; set; }
+        public string ThemeColor { get; set; }
         public string Title { get; set; }
+        public string Url { get; set; }
     }
 }

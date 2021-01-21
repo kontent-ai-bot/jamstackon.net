@@ -3,6 +3,10 @@
 article {
     padding-top: 5em;
 
+    @media screen and (max-width: 790px) {
+        padding-top: 3em;
+    }
+
     .summary {
         width: 80%;
         font-size: large;
@@ -20,13 +24,25 @@ article {
 
     section {
         padding-top: 8em;
+
+        @media screen and (max-width: 790px) {
+            padding-top: 4em;
+        }
     }
 
-    figure.logo.inline {
-        width: 15em;
+    figure.logo {
+        width: 200px;
 
-        a, img {
-            width: inherit;
+        img {
+            width: 200px;
+        }
+
+        &.inline {
+            width: 15em;
+
+            a, img {
+                width: inherit;
+            }
         }
     }
 
@@ -77,22 +93,13 @@ article {
             align-content: center;
             justify-content: center;
             flex-direction: column;
-            flex-grow: 1;
-            flex-basis: 1em;
+            flex: 1 1 0px;
 
             @media screen and (max-width: 780px) {
                 order: 2; /*needs to be add only for responsive mode*/
             }
 
-            &.logo {
-                min-width: unset;
-
-                img {
-                    width: 10em;
-                }
-            }
-
-            img {
+            img, video, picture {
                 padding: .5em;
                 max-width: 100%;
             }

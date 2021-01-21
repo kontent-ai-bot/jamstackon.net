@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>TODO TITLE with SEO</title>
+    @RenderSection("Head")
     <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/main.css")" />
     <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/prism.css")" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.webmanifest">
 </head>
 <body class="dark">
     <header>
@@ -41,24 +42,15 @@
     <footer>
         <div class="footer-wrapper">
             <div class="logo">
-                <div>@Html.Raw("Jamstack on .NET".Replace(".", "<span class='orange'>.</span>"))</div>
+                <div>@Html.Raw(ViewBag.HeaderTitle.Replace(".", "<span class='orange'>.</span>"))</div>
             </div>
+
             <div class="footer-column-group">
                 <div class="footer-column">
-                    <span>Resources</span>
-                    <ul>
-                        <li><a href="#">Resource 1</a></li>
-                        <li><a href="#">Resource 2</a></li>
-                        <li><a href="#">Resource 3</a></li>
-                    </ul>
+                    <a href="https://github.com/Kentico/jamstackon.net">Code on GitHub</a>
                 </div>
                 <div class="footer-column">
-                    <span>Resources</span>
-                    <ul>
-                        <li><a href="#">Resource 1</a></li>
-                        <li><a href="#">Resource 2</a></li>
-                        <li><a href="#">Resource 3</a></li>
-                    </ul>
+                    <a href="https://github.com/Kentico/jamstackon.net/blob/master/CODE_OF_CONDUCT.md">Code of conduct</a>
                 </div>
             </div>
         </div>

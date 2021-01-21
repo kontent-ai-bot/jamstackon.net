@@ -61,11 +61,23 @@ html, body {
 
     header {
         max-width: 1350px;
-        padding-top: 5em;
+        padding-top: 4em;
         text-align: left;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
+
+        @media screen and (max-width: 1024px) {
+            padding-top: 2em;
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            padding-top: .5em;
+        }
 
         .logo {
             padding: 1em;
@@ -115,11 +127,17 @@ html, body {
             margin: 0 auto;
             padding: 2em;
 
+            .logo {
+                margin: auto 0;
+            }
+
             .footer-column-group {
                 display: flex;
+                flex-wrap: wrap;
 
                 .footer-column {
                     padding: .5em 1em;
+                    margin-left: auto;
 
                     ul, ol {
                         list-style: none;
@@ -212,6 +230,7 @@ h3 {
 
     &.cta {
         margin: 2em 1em;
+
         &.center {
             text-align: center;
         }
@@ -256,6 +275,9 @@ h3 {
 
 a {
     color: $color-kontent-orange;
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 p {
@@ -322,5 +344,32 @@ table {
         tr, td {
             padding: 1em;
         }
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: 14px;
+
+        tbody {
+
+            & > tr:first-child {
+                line-height: 1.5em;
+            }
+
+            & > tr:nth-child(2) {
+                height: 3em;
+
+                td {
+                    vertical-align: bottom;
+                }
+            }
+
+            tr, td {
+                padding: 0.5em;
+            }
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 12px;
     }
 }
