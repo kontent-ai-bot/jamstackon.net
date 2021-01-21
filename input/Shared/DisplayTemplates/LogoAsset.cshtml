@@ -1,8 +1,16 @@
 ﻿@model LogoAsset
 
+@{
+    var logo = Model.Logo.FirstOrDefault();
+}
 
-<figure class="logo @(Model.Options.Any(item => item.Codename == "inline") ? "inline" : "")">
-    <a href="@Model.Url">
-        <img src="@Model.Logo.FirstOrDefault()?.Url" srcset="@Model.Logo.FirstOrDefault()?.Url" alt="@Model.Logo.FirstOrDefault()?.Description" loading="lazy">
-    </a>
-</figure>
+@if (logo != null)
+{
+    <figure class="logo @(Model.Options.Any(item => item.Codename == "inline") ? "inline" : "")">
+        <a href="@Model.Url">
+            <img src="@logo.Url"
+                 srcset="@logo.Url"
+                 alt="@(logo.Description ?? logo.Name)" loading="lazy">
+        </a>
+    </figure>
+}

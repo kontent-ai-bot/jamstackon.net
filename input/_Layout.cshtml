@@ -3,7 +3,7 @@
 <head>
     @RenderSection("Head")
     <link rel="stylesheet" media="all" href="@IExecutionContext.Current.GetLink("/assets/styles/main.css")" />
-    <link rel="stylesheet" media="screen" async href="@IExecutionContext.Current.GetLink("/assets/styles/prism.css")" />
+    <link rel="stylesheet" media="screen" href="@IExecutionContext.Current.GetLink("/assets/styles/prism.css")" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.webmanifest">
 </head>
@@ -55,7 +55,7 @@
             </div>
         </div>
     </footer>
-    <script src="@IExecutionContext.Current.GetLink("/assets/scripts/prism.js")"></script>
+    <script defer src="@IExecutionContext.Current.GetLink("/assets/scripts/prism.js")"></script>
 
 </body>
 </html>
