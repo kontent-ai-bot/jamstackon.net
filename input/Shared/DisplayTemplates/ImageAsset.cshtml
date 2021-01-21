@@ -7,7 +7,10 @@
 @if (asset.Type?.StartsWith("image") == true)
 {
     <figure class="image">
-        <img src="@Model.Image.FirstOrDefault()?.Url" srcset="@Model.Image.FirstOrDefault()?.Url" alt="@Model.Image.FirstOrDefault()?.Description" loading="lazy">
+        <img 
+             src="@Model.Image.FirstOrDefault()?.Url" 
+             srcset="@Model.Image.FirstOrDefault()?.Url" 
+             alt="@(asset.Description ??  asset.Name)"   loading="lazy">
         <figcaption>@Model.Label</figcaption>
     </figure>
 }
@@ -15,8 +18,8 @@
 @if (asset.Type?.StartsWith("video") == true)
 {
     <figure class="video">
-        <video autoplay loop muted playsinline style="pointer-events: none;">
-            <source src="@(asset.Url)" type="video/mp4" />
+        <video autoplay loop muted playsinline style="pointer-events: none;" title="@(asset.Description ?? asset.Name)">
+            <source src="@asset.Url" type="video/mp4" />
             Sorry, your browser doesn't support embedded videos.
         </video>
     </figure>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     @RenderSection("Head")
-    <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/main.css")" />
-    <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/prism.css")" />
+    <link rel="stylesheet" media="all" href="@IExecutionContext.Current.GetLink("/assets/styles/main.css")" />
+    <link rel="stylesheet" media="screen" async href="@IExecutionContext.Current.GetLink("/assets/styles/prism.css")" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.webmanifest">
 </head>
@@ -50,7 +50,7 @@
                     <a href="https://github.com/Kentico/jamstackon.net">Code on GitHub</a>
                 </div>
                 <div class="footer-column">
-                    <a href="https://github.com/Kentico/jamstackon.net/blob/master/CODE_OF_CONDUCT.md">Code of conduct</a>
+                    <a href="https://github.com/Kentico/jamstackon.net/blob/main/CODE_OF_CONDUCT.md">Code of conduct</a>
                 </div>
             </div>
         </div>
