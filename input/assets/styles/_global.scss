@@ -300,26 +300,7 @@ strong {
 
     :not(pre) > code[class*="language-"],
     pre[class*="language-"] {
-        background-color: $color-kontent-black-50;
         border: solid 1px $color-primary;
-
-        .token.function {
-            color: $color-kontent-red;
-        }
-
-        .token.keyword {
-            color: $color-kontent-blue;
-        }
-
-        .token.property,
-        .token.tag,
-        .token.boolean,
-        .token.number,
-        .token.constant,
-        .token.symbol,
-        .token.deleted {
-            color: $color-kontent-green;
-        }
     }
 }
 
