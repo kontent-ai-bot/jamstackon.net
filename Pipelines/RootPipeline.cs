@@ -1,9 +1,9 @@
 ﻿using Jamstack.On.Dotnet.Models;
+using Jamstack.On.Dotnet.ViewModels;
 using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Delivery.Urls.QueryParameters.Filters;
 using Kontent.Statiq;
-using Spectre.Cli.Exceptions;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
@@ -15,8 +15,9 @@ namespace Jamstack.On.Dotnet.Pipelines
     public class RootPipeline : Pipeline
     {
         private const string URL_PATH_KEY = "Jamstack.On.Dotnet.Pipelines.RootPipeline.UrlPath";
+        private Root rootNode;
 
-        public RootPipeline(IDeliveryClient client, ITypeProvider typeProvider)
+        public RootPipeline(IDeliveryClient client)
         {
             InputModules = new ModuleList
             {
@@ -30,6 +31,7 @@ namespace Jamstack.On.Dotnet.Pipelines
                     KontentConfig.GetChildren<Root>(root =>
                     {          
                         // For multiple levels of menu it is neccesary to flatten the Page structure and prepare metadata from the parent information
+                        rootNode = root;
                         return root.Subpages.OfType<Page>();
                     })
                 ),
@@ -81,10 +83,16 @@ namespace Jamstack.On.Dotnet.Pipelines
                                 ?.FirstOrDefault()
                                 ?.ToString();
 
+                            System.Diagnostics.Debug.WriteLine(rootNode.Keywords);
+
                             switch (typeCodename)
                             {
                                 case LandingPage.Codename:
-                                    return document.AsKontent<LandingPage>();
+                                    return new LandingPageWithMetadata
+                                    {
+                                        Metadata = rootNode,
+                                        LandingPage = document.AsKontent<LandingPage>()
+                                    };
                                 default:
                                     throw new NotImplementedException($"Template not implemented for page content type {typeCodename}");
                             }

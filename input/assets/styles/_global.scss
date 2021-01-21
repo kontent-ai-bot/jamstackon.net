@@ -13,6 +13,46 @@ html, body {
         background-color: $color-dark-base;
         color: $color-dark-primary;
 
+        header {
+            nav {
+                ol, ul {
+                    li {
+                        a {
+                            color: $color-dark-primary;
+                        }
+                    }
+                }
+            }
+        }
+
+        .secondary {
+            color: $color-dark-secondary;
+        }
+
+        .button {
+            a {
+                color: $color-dark-primary;
+                border-color: $color-dark-primary;
+            }
+        }
+
+        .code-snippet {
+            :not(pre) > code[class*="language-"],
+            pre[class*="language-"] {
+                background-color: $color-dark-base;
+                border-color: $color-base;
+            }
+        }
+
+        table {
+            tbody {
+
+                & > tr:first-child {
+                    border-color: $color-dark-secondary;
+                }
+            }
+        }
+
         footer {
             background-color: $color-dark-base-secondary;
             color: $color-dark-primary;
@@ -21,14 +61,31 @@ html, body {
 
     header {
         max-width: 1350px;
-        padding: 0 24px;
+        padding-top: 4em;
         text-align: left;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
 
+        @media screen and (max-width: 1024px) {
+            padding-top: 2em;
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            padding-top: .5em;
+        }
+
         .logo {
             padding: 1em;
+
+            .title {
+                font-size: 2em;
+                font-weight: bold;
+            }
         }
 
         nav {
@@ -38,11 +95,13 @@ html, body {
                 align-items: center;
 
                 li {
-                    padding: .5em;
+                    padding: 1em;
 
                     a {
                         text-decoration: none;
-                        color: $color-kontent-orange;
+                        opacity: .66;
+                        color: $color-primary;
+                        font-size: 1.2em;
                     }
                 }
             }
@@ -68,11 +127,17 @@ html, body {
             margin: 0 auto;
             padding: 2em;
 
+            .logo {
+                margin: auto 0;
+            }
+
             .footer-column-group {
                 display: flex;
+                flex-wrap: wrap;
 
                 .footer-column {
                     padding: .5em 1em;
+                    margin-left: auto;
 
                     ul, ol {
                         list-style: none;
@@ -143,21 +208,21 @@ h2 {
 
 h3 {
     font-size: 20px;
-    padding: 0 0 16px;
+    padding: 16px 0 16px;
 
     @media screen and (min-width: 480px) {
         font-size: 24px;
-        padding: 0 0 20px;
+        padding: 20px 0 20px;
     }
 
     @media screen and (min-width: 740px) {
         font-size: 28px;
-        padding: 0 0 24px;
+        padding: 24px 0 24px;
     }
 
     @media screen and (min-width: 1280px) {
         font-size: 32px;
-        padding: 0 0 32px;
+        padding: 32px 0 32px;
     }
 }
 
@@ -165,30 +230,41 @@ h3 {
 
     &.cta {
         margin: 2em 1em;
+
+        &.center {
+            text-align: center;
+        }
     }
 
     a {
-        background-color: $color-kontent-black-50;
-        border: none;
-        color: $color-kontent-white;
+        color: $color-primary;
+        border-color: $color-primary;
+        border: solid 2px;
+        border-radius: 25px;
         padding: 15px 32px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
+        background-color: transparent;
+        line-height: 16px;
+        font-size: 14px;
         text-transform: uppercase;
         font-weight: bold;
     }
 
     &.primary {
         a {
+            color: $color-kontent-white;
             background-color: $color-kontent-orange;
+            border: none;
         }
     }
 
     &.secondary {
         a {
+            color: $color-kontent-white;
             background-color: $color-kontent-red;
+            border: none;
         }
     }
 }
@@ -197,56 +273,84 @@ h3 {
     color: $color-kontent-orange;
 }
 
-.orange-lists {
-    // https://www.w3schools.com/howto/howto_css_bullet_color.asp
-    ul {
-        margin: .5em 0 .5em 1em;
-
-        li {
-            line-height: 1.5;
-
-            &::before {
-                content: "\25AA";
-                color: $color-kontent-orange;
-                font-weight: bold;
-                display: inline-block;
-                width: 1em;
-                margin-left: -1em
-            }
-        }
-    }
-    // https://www.w3.org/Style/Examples/007/color-bullets.en.html
-    ol {
-        margin: .5em 0 .5em 1.5em;
-
-        li {
-            counter-increment: li;
-            line-height: 1.5;
-
-            &::before {
-                content: counter(li) ".";
-                color: $color-kontent-orange;
-                display: inline-block;
-                width: 1.5em;
-                margin-left: -1.5em;
-            }
-        }
+a {
+    color: $color-kontent-orange;
+    &:hover {
+        text-decoration: none;
     }
 }
 
-a {
-    color: $color-kontent-orange;
+p {
+    line-height: 1.5;
+    letter-spacing: 0;
+    padding: .5em 0;
 }
 
 strong {
     font-weight: bold;
 }
 
-code {
-    text-decoration: none;
-    padding: 0.2em 0.4em;
-    font-size: 85%;
-    background-color: $color-kontent-black-50;
-    font-family: monospace;
-    color: $color-kontent-white;
+.code-snippet {
+
+    .command-line-prompt {
+        span::before {
+            color: $color-kontent-red;
+        }
+    }
+
+    :not(pre) > code[class*="language-"],
+    pre[class*="language-"] {
+        border: solid 1px $color-primary;
+    }
+}
+
+table {
+    margin: auto;
+
+    tbody {
+
+        & > tr:first-child {
+            border-bottom: 1px $color-secondary solid;
+            line-height: 3em;
+        }
+
+        & > tr:nth-child(2) {
+            height: 5em;
+
+            td {
+                vertical-align: bottom;
+            }
+        }
+
+        tr, td {
+            padding: 1em;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: 14px;
+
+        tbody {
+
+            & > tr:first-child {
+                line-height: 1.5em;
+            }
+
+            & > tr:nth-child(2) {
+                height: 3em;
+
+                td {
+                    vertical-align: bottom;
+                }
+            }
+
+            tr, td {
+                padding: 0.5em;
+            }
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 12px;
+    }
 }

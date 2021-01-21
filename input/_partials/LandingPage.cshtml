@@ -1,12 +1,54 @@
-@model Jamstack.On.Dotnet.Models.LandingPage
+@model Jamstack.On.Dotnet.ViewModels.LandingPageWithMetadata
+
+@{
+    ViewBag.HeaderTitle = Model.LandingPage.Title;
+    ViewBag.Links = Model.LandingPage.HeaderLinksTyped;
+    ViewBag.ShowDarkModeToggle = Model.LandingPage.ShowDarkModeToggle;
+}
+
+@section Head
+{
+    <title>@Model.Metadata.Title</title>
+    <meta name="description" content="@Model.Metadata.Description" />
+    <meta name="keywords" content="@Model.Metadata.Keywords" />
+    <meta property="og:title" content="@Model.Metadata.Title" />
+    <meta property="og:description" content="@Model.Metadata.Description" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@Model.Metadata.Url" />
+    <meta property="og:image" content="@Model.Metadata.Image.FirstOrDefault()?.Url" />
+    <meta property="og:image:width" content="@Model.Metadata.Image.FirstOrDefault()?.Width" />
+    <meta property="og:image:height" content="@Model.Metadata.Image.FirstOrDefault()?.Height" />
+    <meta nam="twitter:card" content="summary_large_image" />
+    <meta nam="twitter:title" content="@Model.Metadata.Title" />
+    <meta nam="twitter:description" content="@Model.Metadata.Description" />
+    <meta nam="twitter:image" content="@Model.Metadata.Image.FirstOrDefault()?.Url" />
+    <meta name="theme-color" content="@Model.Metadata.ThemeColor" />
+    <link rel="icon" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=48" />
+    <link rel="apple-touch-icon" sizes="48x48" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=48">
+    <link rel="apple-touch-icon" sizes="72x72" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=72">
+    <link rel="apple-touch-icon" sizes="96x96" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=96">
+    <link rel="apple-touch-icon" sizes="144x144" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=144">
+    <link rel="apple-touch-icon" sizes="192x192" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=192">
+    <link rel="apple-touch-icon" sizes="256x256" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=256">
+    <link rel="apple-touch-icon" sizes="384x384" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=384">
+    <link rel="apple-touch-icon" sizes="512x512" href="@(Model.Metadata.Icon.FirstOrDefault()?.Url)?w=512">
+}
+
 
 <article>
-    <h1>@Html.Raw(Model.Headline.Replace(".", "<span class='orange'>.</span>"))</h1>
-    <div class="summary">
-        @Html.DisplayFor(vm => vm.Summary)
-        <div class="cta-container">
-            @Html.DisplayFor(vm => vm.Cta)
+    <div class="flex">
+        <div>
+            <h1 id="@Model.LandingPage.Headline.GenerateAnchorIdentifier()">@Html.Raw(Model.LandingPage.Headline.Replace("?", "<span class='orange'>?</span>"))</h1>
+            <div class="summary secondary">
+                @Html.DisplayFor(vm => vm.LandingPage.Summary)
+                <div class="cta-container">
+                    @Html.DisplayFor(vm => vm.LandingPage.Cta)
+                </div>
+            </div>
+        </div>
+        <div class="flex">
+            @Html.DisplayFor(vm => vm.LandingPage.Images)
         </div>
     </div>
-    @Html.DisplayFor(vm => vm.MainText)
+    @Html.DisplayFor(vm => vm.LandingPage.MainText)
 </article>

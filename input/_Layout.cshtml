@@ -1,27 +1,35 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Test title</title>
+    @RenderSection("Head")
     <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/main.css")" />
-
+    <link rel="stylesheet" href="@IExecutionContext.Current.GetLink("/assets/styles/prism.css")" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.webmanifest">
 </head>
 <body class="dark">
     <header>
         <div class="logo">
-            <div>Jamstack on .Net</div>
-            <div>by Kontent with</div>
+            <div class="title">@Html.Raw(ViewBag.HeaderTitle.Replace(".", "<span class='orange'>.</span>"))</div>
         </div>
         <nav>
             <ul>
-                <li><a href="#">Intro</a></li>
-                <li><a href="#">Step 1</a></li>
-                <li><a href="#">Step 2</a></li>
-                <li>
-                    <label class="switch">
-                        <input type="checkbox" checked="checked" onchange="this.checked ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')">
-                        <span class="slider"></span>
-                    </label>
-                </li>
+                @{
+                    foreach (var link in (IEnumerable<Link>)ViewBag.Links)
+                    {
+                        <li><a href="@link.Url">@link.Label</a></li>
+                    }
+                }
+
+                @if (ViewBag.ShowDarkModeToggle)
+                {
+                    <li>
+                        <label class="switch">
+                            <input type="checkbox" checked="checked" onchange="this.checked ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')">
+                            <span class="slider round"></span>
+                        </label>
+                    </li>
+                }
             </ul>
         </nav>
     </header>
@@ -34,28 +42,20 @@
     <footer>
         <div class="footer-wrapper">
             <div class="logo">
-                <div>Jamstack on .Net</div>
-                <div>by Kontent</div>
+                <div>@Html.Raw(ViewBag.HeaderTitle.Replace(".", "<span class='orange'>.</span>"))</div>
             </div>
+
             <div class="footer-column-group">
                 <div class="footer-column">
-                    <span>Resources</span>
-                    <ul>
-                        <li><a href="#">Resource 1</a></li>
-                        <li><a href="#">Resource 2</a></li>
-                        <li><a href="#">Resource 3</a></li>
-                    </ul>
+                    <a href="https://github.com/Kentico/jamstackon.net">Code on GitHub</a>
                 </div>
                 <div class="footer-column">
-                    <span>Resources</span>
-                    <ul>
-                        <li><a href="#">Resource 1</a></li>
-                        <li><a href="#">Resource 2</a></li>
-                        <li><a href="#">Resource 3</a></li>
-                    </ul>
+                    <a href="https://github.com/Kentico/jamstackon.net/blob/master/CODE_OF_CONDUCT.md">Code of conduct</a>
                 </div>
             </div>
         </div>
     </footer>
+    <script src="@IExecutionContext.Current.GetLink("/assets/scripts/prism.js")"></script>
+
 </body>
 </html>

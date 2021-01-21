@@ -1,10 +1,12 @@
 ﻿@model Text
 
-<div class="content orange-lists">
+<div class="content">
     @if (!string.IsNullOrEmpty(Model.Title))
     {
-        <h2 class="append-dot">@Model.Title</h2>
+        <h2 id="@Model.Title.GenerateAnchorIdentifier()" class="append-dot title">@Model.Title</h2>
     }
 
+
     @Html.DisplayFor(vm => vm.Content)
+
 </div>

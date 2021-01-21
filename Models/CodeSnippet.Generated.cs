@@ -10,14 +10,12 @@ using Kentico.Kontent.Delivery.Abstractions;
 
 namespace Jamstack.On.Dotnet.Models
 {
-    public partial class ImageAsset
+    public partial class CodeSnippet
     {
-        public const string Codename = "image_asset";
-        public const string ImageCodename = "image";
-        public const string LabelCodename = "label";
+        public const string Codename = "code_snippet";
+        public const string CodeCodename = "code";
 
-        public IEnumerable<IAsset> Image { get; set; }
-        public string Label { get; set; }
+        public string Code { get; set; }
         public IContentItemSystemAttributes System { get; set; }
     }
 }

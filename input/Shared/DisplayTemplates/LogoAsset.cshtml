@@ -1,0 +1,8 @@
+﻿@model LogoAsset
+
+
+<figure class="logo @(Model.Options.Any(item => item.Codename == "inline") ? "inline" : "")">
+    <a href="@Model.Url">
+        <img src="@Model.Logo.FirstOrDefault()?.Url" srcset="@Model.Logo.FirstOrDefault()?.Url" alt="@Model.Logo.FirstOrDefault()?.Description" loading="lazy">
+    </a>
+</figure>
