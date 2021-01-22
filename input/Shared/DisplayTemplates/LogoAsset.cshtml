@@ -8,8 +8,8 @@
 {
     <figure class="logo @(Model.Options.Any(item => item.Codename == "inline") ? "inline" : "")">
         <a href="@Model.Url">
-            <img src="@logo.Url"
-                 srcset="@logo.Url"
+            <img src="@(logo.Url + "?auto=format&fm=webp")"
+                 srcset="@(logo.Url + "?auto=format&fm=webp")"
                  alt="@(logo.Description ?? logo.Name)" loading="lazy">
         </a>
     </figure>

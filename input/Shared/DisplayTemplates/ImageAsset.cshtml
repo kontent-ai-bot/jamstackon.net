@@ -8,8 +8,8 @@
 {
     <figure class="image">
         <img 
-             src="@Model.Image.FirstOrDefault()?.Url" 
-             srcset="@Model.Image.FirstOrDefault()?.Url" 
+             src="@(asset.Url + "?auto=format&fm=webp")" 
+             srcset="@(asset.Url + "?auto=format&fm=webpt")" 
              alt="@(asset.Description ??  asset.Name)"   loading="lazy">
         <figcaption>@Model.Label</figcaption>
     </figure>
