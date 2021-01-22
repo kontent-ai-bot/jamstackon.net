@@ -8,6 +8,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_ANALYTICS_PROPERTY_ID: UA-69014260-9
 
     steps:
     - uses: actions/checkout@v2
