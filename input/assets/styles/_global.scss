@@ -19,6 +19,11 @@ html, body {
                     li {
                         a {
                             color: $color-dark-primary;
+                            transition: color 0.5s;
+
+                            &:hover {
+                                color: $color-kontent-orange-dark;
+                            }
                         }
                     }
                 }
@@ -33,6 +38,25 @@ html, body {
             a {
                 color: $color-dark-primary;
                 border-color: $color-dark-primary;
+                transition: all 0.5s;
+
+                &:hover {
+                    background-color: $color-kontent-white;
+                    color: $color-kontent-black-100;
+                }
+            }
+
+            &.primary {
+                a {
+                    color: $color-kontent-white;
+                    background-color: $color-kontent-orange;
+                    border: none;
+                    transition: background-color 0.5s;
+
+                    &:hover {
+                        background-color: $color-kontent-orange-dark;
+                    }
+                }
             }
         }
 
@@ -56,6 +80,20 @@ html, body {
         footer {
             background-color: $color-dark-base-secondary;
             color: $color-dark-primary;
+            margin-top: 12em;
+
+            @media screen and (max-width: 1024px) {
+                margin-top: 10em;
+            }
+
+
+            @media screen and (max-width: 790px) {
+                margin-top: 6.5em;
+            }
+
+            @media screen and (max-width: 550px) {
+                margin-top: 4em;
+            }
         }
     }
 
@@ -252,11 +290,18 @@ h3 {
         font-weight: bold;
     }
 
+
+
     &.primary {
         a {
             color: $color-kontent-white;
             background-color: $color-kontent-orange;
             border: none;
+            transition: background-color 0.5s;
+
+            &:hover {
+                background-color: $color-kontent-orange-dark;
+            }
         }
     }
 
@@ -275,7 +320,10 @@ h3 {
 
 a {
     color: $color-kontent-orange;
+    transition: color 0.5s;
+
     &:hover {
+        color: $color-kontent-orange-dark;
         text-decoration: none;
     }
 }
@@ -291,7 +339,10 @@ strong {
 }
 
 .code-snippet {
-
+    /*.code-snippet {
+        width: 80%;
+        margin: auto;
+    }*/
     .command-line-prompt {
         span::before {
             color: $color-kontent-red;
