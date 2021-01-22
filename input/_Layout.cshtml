@@ -5,19 +5,18 @@
         var AnalyticsPropertyId = Environment.GetEnvironmentVariable("GOOGLE_ANALYTICS_PROPERTY_ID");
     }
 
-    @if (AnalyticsPropertyId != null)
-    {
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="@($"https://www.googletagmanager.com/gtag/js?id={AnalyticsPropertyId}")"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+@if (AnalyticsPropertyId != null)
+{
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="@($"https://www.googletagmanager.com/gtag/js?id={AnalyticsPropertyId}")"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-        gtag('config', '@AnalyticsPropertyId');
-        </script>
-
-    }
+    gtag('config', '@AnalyticsPropertyId');
+    </script>
+}
 
     @RenderSection("Head")
     <link rel="stylesheet" media="all" href="@IExecutionContext.Current.GetLink("/assets/styles/main.css")" />
