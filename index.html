@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-69014260-9"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-69014260-9');
+        </script>
+
+    
+    <title>Jamstack on .Net</title>
+    <meta name="description" content="How fast do you want your site to be? Performance, Security, Scalability. You can now use these benefits of Jamstack sites in plain .NET Core." />
+    <meta name="keywords" content="Jamstack, Kontent, Statiq, GitHub, DevRel, Developer Relations, Kentico, dotnet, web development" />
+    <meta property="og:title" content="Jamstack on .Net" />
+    <meta property="og:description" content="How fast do you want your site to be? Performance, Security, Scalability. You can now use these benefits of Jamstack sites in plain .NET Core." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jamstackon.net" />
+    <meta property="og:image" content="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/553f5653-4c6b-40c8-ae74-b9caaa61ba2e/jamstack-dotnet---kk-og-img.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
+    <meta nam="twitter:card" content="summary_large_image" />
+    <meta nam="twitter:title" content="Jamstack on .Net" />
+    <meta nam="twitter:description" content="How fast do you want your site to be? Performance, Security, Scalability. You can now use these benefits of Jamstack sites in plain .NET Core." />
+    <meta nam="twitter:image" content="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/553f5653-4c6b-40c8-ae74-b9caaa61ba2e/jamstack-dotnet---kk-og-img.png" />
+    <meta name="theme-color" content="#231F20" />
+    <link rel="icon" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=48" />
+    <link rel="apple-touch-icon" sizes="48x48" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=48">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=72">
+    <link rel="apple-touch-icon" sizes="96x96" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=96">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=144">
+    <link rel="apple-touch-icon" sizes="192x192" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=192">
+    <link rel="apple-touch-icon" sizes="256x256" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=256">
+    <link rel="apple-touch-icon" sizes="384x384" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=384">
+    <link rel="apple-touch-icon" sizes="512x512" href="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/1336b247-5224-4c0d-90ac-f51f15f5db1c/icon-512x512[1].png?w=512">
+
+    <link rel="stylesheet" media="all" href="/jamstackon.net/assets/styles/main.css" />
+    <link rel="stylesheet" media="screen" href="/jamstackon.net/assets/styles/prism.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.webmanifest">
+</head>
+<body class="dark">
+    <header>
+        <div class="logo">
+            <div class="title">Jamstack on <span class='orange'>.</span>NET</div>
+        </div>
+        <nav>
+            <ul>
+                        <li><a href="#what-is-jamstack">Jamstack</a></li>
+                        <li><a href="#jamstack-on-net-with-statiq">Code</a></li>
+                        <li><a href="#traditional-or-headless-cms">CMS</a></li>
+                        <li><a href="#hosting-jamstack">Hosting</a></li>
+                        <li><a href="#propagating-changes-to-jamstack-site">Architecture</a></li>
+                        <li><a href="#how-to-start">Get started</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="layout">
+            
+
+
+
+<article>
+    <div class="flex">
+        <div>
+            <h1 id="how-fast-do-you-want-your-site-to-be-">How fast do you want your site to be<span class='orange'>?</span></h1>
+            <div class="summary secondary">
+                <p>Performance, Security, Scalability. You can now use these benefits of Jamstack sites in plain .NET Core.</p>
+                <div class="cta-container">
+                    
+
+<div class="cta button primary ">
+    <a href="https://github.com/Kentico/statiq-starter-kontent-lumen#readme">See the starter on GitHub</a>
+</div>
+                </div>
+            </div>
+        </div>
+        <div class="flex">
+            
+
+
+    <figure class="video">
+        <video autoplay loop muted playsinline style="pointer-events: none;" title="combined-comparison.webm">
+            <source src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/bfbc3656-a669-4250-8af2-9d9c3ffa3679/combined-comparison.webm" type="video/mp4" />
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+    </figure>
+
+
+        </div>
+    </div>
+    
+<section class="flex">
+    
+
+    <figure class="image">
+        <img 
+             src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/ff624af2-6171-4414-983f-042b4d688676/what-is-statiq.svg" 
+             srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/ff624af2-6171-4414-983f-042b4d688676/what-is-statiq.svg" 
+             alt="what-is-statiq.svg"   loading="lazy">
+        <figcaption></figcaption>
+    </figure>
+
+
+
+<div class="content">
+        <h2 id="what-is-jamstack" class="append-dot title">What is Jamstack</h2>
+
+
+    <p>Jamstack is an architecture for building fast and scalable websites. The content and templates are mixed together using a static site generator which pre-generates all pages of the site. Jamstack site is then typically hosted on a CDN to ensure easy and cheap availability and scalability.</p><h3>What is Statiq</h3><p>Statiq is currently the only static site generator for .NET.</p>
+
+</div>
+</section>
+<section class="flex-row">
+    
+<div class="content">
+        <h2 id="jamstack-on-net-with-statiq" class="append-dot title">Jamstack on .NET with Statiq</h2>
+
+
+    <table><tbody>
+  <tr><td><br></td><td><strong>Server-rendered</strong></td><td><strong>Jamstack</strong></td></tr>
+  <tr><td><strong>How do you store classes?</strong></td><td>Model classes</td><td>Model classes</td></tr>
+  <tr><td><strong>How do you implement business logic?</strong></td><td>Controller + additionallibraries&nbsp;</td><td>Pipeline + additional libraries</td></tr>
+  <tr><td><strong>How do you implement website views?</strong></td><td>Razor views</td><td>Razor views</td></tr>
+  <tr><td><strong>How do you typically get the data?</strong></td><td>Traditional CMS, database, API&nbsp;</td><td>Headless CMS, database, API&nbsp;</td></tr>
+  <tr><td><strong>What framework do you use?</strong></td><td>.NET Framework, .NET Core&nbsp;</td><td>.NET Core, .NET 5&nbsp;</td></tr>
+  <tr><td><strong>What IDE do you use?</strong></td><td>Visual Studio, VS Code</td><td>Visual Studio, VS Code</td></tr>
+</tbody></table>
+
+</div>
+</section>
+<section class="flex">
+    
+<div class="content">
+        <h2 id="traditional-or-headless-cms" class="append-dot title">Traditional or headless CMS</h2>
+
+
+    <p>The architecture of Jamstack encourages you to separate concerns. To decouple content from business logic and presentation layer. The website content is typically stored in a cloud-based headless CMS. You don't need to care about hosting or updates, only ask API for the data you want.</p><p>The headless CMS Kentico Kontent is the only one that is fully integrated with Statiq, the static site generator for .NET.</p>
+
+    <figure class="logo inline">
+        <a href="https://kontent.ai">
+            <img src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/cd29af9b-a71d-4c60-bfd5-dd5038666a25/kk-logo-hor-color-neg-sz-rgb.png"
+                 srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/cd29af9b-a71d-4c60-bfd5-dd5038666a25/kk-logo-hor-color-neg-sz-rgb.png"
+                 alt="kk-logo-hor-color-neg-sz-rgb.png" loading="lazy">
+        </a>
+    </figure>
+
+
+<div class="cta button ">
+    <a href="https://github.com/alanta/Kontent.Statiq">See the integration</a>
+</div>
+
+</div>
+
+    <figure class="image">
+        <img 
+             src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/99c6ac8c-09eb-4cd9-8aab-db0d7d80a360/traditional-vs-headless.svg" 
+             srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/99c6ac8c-09eb-4cd9-8aab-db0d7d80a360/traditional-vs-headless.svg" 
+             alt="traditional-vs-headless.svg"   loading="lazy">
+        <figcaption></figcaption>
+    </figure>
+
+
+
+</section>
+<section class="flex">
+    
+
+    <figure class="image">
+        <img 
+             src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/5bd4901c-8e03-480e-a3e3-96e59c113b58/cdn-benefits.svg" 
+             srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/5bd4901c-8e03-480e-a3e3-96e59c113b58/cdn-benefits.svg" 
+             alt="cdn-benefits.svg"   loading="lazy">
+        <figcaption></figcaption>
+    </figure>
+
+
+
+<div class="content">
+        <h2 id="hosting-jamstack" class="append-dot title">Hosting Jamstack</h2>
+
+
+    <p>Jamstack site is pre-generated into a set of static files and client JavaScripts. It does not require the processing power of the hosting server. You won't need to set up expensive scaling and use high tiers of database plans.</p><p>Static files can be placed on a CDN. Content Delivery Network hosting is cheaper and allows for better availability and scalability. By replicating your data in multiple locations it brings your data closer to your visitors.</p>
+
+</div>
+</section>
+<section class="flex">
+    
+
+    <figure class="logo ">
+        <a href="https://netlify.com">
+            <img src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/3d255aa2-450c-4623-a6bb-11e3d3ca35a7/full-logo-dark.svg"
+                 srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/3d255aa2-450c-4623-a6bb-11e3d3ca35a7/full-logo-dark.svg"
+                 alt="full-logo-dark.svg" loading="lazy">
+        </a>
+    </figure>
+
+
+    <figure class="logo ">
+        <a href="https://azure.microsoft.com">
+            <img src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/4cc6faee-df31-42d3-8001-5927c2d6ce29/Azure.svg"
+                 srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/4cc6faee-df31-42d3-8001-5927c2d6ce29/Azure.svg"
+                 alt="Azure.svg" loading="lazy">
+        </a>
+    </figure>
+
+
+    <figure class="logo ">
+        <a href="https://vercel.com/home">
+            <img src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/681c02d1-f8a7-4f76-adae-a9de07fa5ed4/Vercelsvg.svg"
+                 srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/681c02d1-f8a7-4f76-adae-a9de07fa5ed4/Vercelsvg.svg"
+                 alt="Vercelsvg.svg" loading="lazy">
+        </a>
+    </figure>
+
+
+    <figure class="logo ">
+        <a href="https://cloud.google.com/cdn">
+            <img src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/7ba4bd55-7548-4764-9f83-43cce39c50d7/logo_lockup_cloud_rgb%20-%20200px.png"
+                 srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/7ba4bd55-7548-4764-9f83-43cce39c50d7/logo_lockup_cloud_rgb%20-%20200px.png"
+                 alt="logo_lockup_cloud_rgb - 200px.png" loading="lazy">
+        </a>
+    </figure>
+
+
+    <figure class="logo ">
+        <a href="https://pages.github.com">
+            <img src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/09dc30d8-9dc1-43e0-8db8-9362f83a2a25/GitHub.svg"
+                 srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/09dc30d8-9dc1-43e0-8db8-9362f83a2a25/GitHub.svg"
+                 alt="GitHub.svg" loading="lazy">
+        </a>
+    </figure>
+
+</section>
+<section class="flex-row">
+    
+<div class="code-snippet">
+    <pre data-prompt=">" class=""><code class="language-csharp">await Bootstrapper&#xD;&#xA;    .Factory&#xD;&#xA;    .CreateWeb(args)&#xD;&#xA;    .DeployToAzureAppService(&#xD;&#xA;        &quot;MySiteName&quot;,&#xD;&#xA;        &quot;MyUsername&quot;,&#xD;&#xA;        Config.FromSetting&lt;string&gt;(&quot;PASSWORD_VAR&quot;)&#xD;&#xA;    )&#xD;&#xA;    // ...&#xD;&#xA;    .RunAsync();</code></pre>
+</div>
+<div class="code-snippet">
+    <pre data-prompt=">" class="command-line"><code class="language-sh">dotnet run -- deploy</code></pre>
+</div>
+</section>
+<section class="flex">
+    
+<div class="content">
+        <h2 id="propagating-changes-to-jamstack-site" class="append-dot title">Propagating changes to Jamstack site</h2>
+
+
+    <p>Whenever you change content or code, the Jamstack site needs to rebuild. The rebuild happens on a build server and is triggered automatically using a webhook notification.</p><p>For example, GitHub sends a webhook every time you push. A headless CMS sends a webhook every time you publish a content item.</p>
+
+</div>
+
+    <figure class="image">
+        <img 
+             src="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/f8a4403f-b7be-4e12-ae69-64ea7865f767/propagating-changes.svg" 
+             srcset="https://assets-us-01.kc-usercontent.com:443/1981ac13-ec8e-00fd-273b-d8cfd86ed5ba/f8a4403f-b7be-4e12-ae69-64ea7865f767/propagating-changes.svg" 
+             alt="propagating-changes.svg"   loading="lazy">
+        <figcaption></figcaption>
+    </figure>
+
+
+
+</section>
+<section class="flex-row">
+    
+<div class="content">
+        <h2 id="how-to-start" class="append-dot title">How to start</h2>
+
+
+    
+<div class="code-snippet">
+    <pre data-prompt=">" class="command-line"><code class="language-sh">dotnet new console --name FromZeroToHero</code></pre>
+</div>
+<div class="code-snippet">
+    <pre data-prompt=">" class="command-line"><code class="language-sh">dotnet add package Statiq.Web -v 1.0.0-*</code></pre>
+</div><p><a href="https://github.com/Kentico/kontent-boilerplate-statiq-net#create-a-content-source">Get your content from a headless CMS</a> or another data source.</p><p>Implement your markup in Razor views</p>
+<div class="code-snippet">
+    <pre data-prompt=">" class="command-line"><code class="language-sh">dotnet run</code></pre>
+</div>
+
+</div>
+<div class="spacer">
+    <span>OR</span>
+</div>
+
+<div class="cta button center">
+    <a href="https://github.com/Kentico/kontent-boilerplate-statiq-net#readme">Get the boilerplate</a>
+</div>
+</section>
+</article>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-wrapper">
+            <div class="logo">
+                <div>Jamstack on <span class='orange'>.</span>NET</div>
+            </div>
+
+            <div class="footer-column-group">
+                <div class="footer-column">
+                    <a href="https://github.com/Kentico/jamstackon.net">Code on GitHub</a>
+                </div>
+                <div class="footer-column">
+                    <a href="https://github.com/Kentico/jamstackon.net/blob/main/CODE_OF_CONDUCT.md">Code of conduct</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script defer src="/jamstackon.net/assets/scripts/prism.js"></script>
+
+</body>
+</html>
