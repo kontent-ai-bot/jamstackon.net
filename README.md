@@ -1,5 +1,8 @@
 # Jamstack on .Net
 
+## :warning: Deprecation Notice
+> This repository has been archived and is no longer maintained.
+
 ![Build](https://github.com/Kentico/jamstackon.net/workflows/.NET%20Core/badge.svg)
 ![Release](https://github.com/Kentico/jamstackon.net/workflows/Publish%20site/badge.svg)
 [![Live](https://img.shields.io/badge/Live-DEMO-brightgreen.svg?logo=github&logoColor=white)](https://jamstackon.net)
